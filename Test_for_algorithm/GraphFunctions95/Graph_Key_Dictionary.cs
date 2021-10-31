@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GraphFunctionsUN95
+namespace GraphFunctions95
 {
     public class Graph_Key_Dictionary<Type>
     {

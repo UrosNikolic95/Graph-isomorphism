@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+ 
 
-namespace GraphFunctionsUN95
+namespace GraphFunctions95
 {
     class Program
     {
@@ -16,7 +17,7 @@ namespace GraphFunctionsUN95
             // Class1.Test_1_isomorphic_samples(500);
             // Class1.Test_1_isomorphic_samples(750);
             // Class1.Test_1_isomorphic_samples(1000);
-             TestGraphFunctions.Test_1_isomorphic_samples(100);
+             Test_Graph_Functions.Test_1_isomorphic_samples(100);
 
             //    Class1.Test_2_NOT_isomorphic_samples(250);
             //   Class1.Test_2_NOT_isomorphic_samples(500);
@@ -37,12 +38,12 @@ namespace GraphFunctionsUN95
             //  output_T3.print();
 
             // Class1.Test_7();
-            TestGraphFunctions.Test_4();
-            TestGraphFunctions.Test_8();
+            Test_Graph_Functions.Test_4();
+            Test_Graph_Functions.Test_8();
 
-            TestGraphFunctions.Test_5();
-            TestGraphFunctions.Test_6();
-            TestGraphFunctions.Test_Graph_Key_Dictionary();
+            Test_Graph_Functions.Test_5();
+            Test_Graph_Functions.Test_6();
+            Test_Graph_Functions.Test_Graph_Key_Dictionary();
             Console.ReadLine();
         }
     }

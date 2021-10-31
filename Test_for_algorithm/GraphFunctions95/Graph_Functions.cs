@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 
 
-namespace GraphFunctionsUN95
+namespace GraphFunctions95
 {
     public class Graph_Functions
     {
