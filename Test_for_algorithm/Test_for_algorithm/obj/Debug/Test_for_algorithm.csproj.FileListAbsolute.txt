@@ -40,4 +40,3 @@ C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\Test_for_algori
 C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\Test_for_algorithm\obj\Debug\Test_For_Algorithm.pdb
 C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\Test_for_algorithm\bin\Debug\GraphFunctions95.dll
 C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\Test_for_algorithm\bin\Debug\GraphFunctions95.pdb
-C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\Test_for_algorithm\obj\Debug\Test_for_algorithm.csproj.CopyComplete

@@ -24,9 +24,9 @@ namespace ClassLibrary1
             F_1_Adjancy_Matrix = Class2.F1(20,20);
             bool[,] F_2_Adjancy_Matrix = Class2.Permute(F_1_Adjancy_Matrix,r);
             t1.Start();
-            bool is_isomorphic = Graph_Functions.Graph_Isomorphism(
-                Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_1_Adjancy_Matrix),
-                Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix( F_2_Adjancy_Matrix));
+            bool is_isomorphic = GraphFunctions95.Graph_Functions.Graph_Isomorphism(
+               GraphFunctions95.Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_1_Adjancy_Matrix),
+               GraphFunctions95.Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix( F_2_Adjancy_Matrix));
             long time= t1.ElapsedMilliseconds;
             Console.WriteLine(
                 "\n\nisomorphic samples"
@@ -44,7 +44,7 @@ namespace ClassLibrary1
             bool[,] F_1_Adjancy_Matrix = Class2.Create_Random_Adjancy_Matrix(n,r);
             bool[,] F_2_Adjancy_Matrix = Class2.Create_Random_Adjancy_Matrix(n,r);
             t1.Start();
-            bool is_isomorphic = Graph_Functions.Graph_Isomorphism(Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_1_Adjancy_Matrix), Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_2_Adjancy_Matrix));
+            bool is_isomorphic = GraphFunctions95.Graph_Functions.Graph_Isomorphism(GraphFunctions95.Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_1_Adjancy_Matrix), GraphFunctions95.Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_2_Adjancy_Matrix));
             long time = t1.ElapsedMilliseconds;
             Console.WriteLine(
                 "\n\nNot isomorphic samples"
@@ -113,7 +113,7 @@ namespace ClassLibrary1
                     }
                     
                     S.Restart();
-                    bool result = Graph_Functions.Graph_Isomorphism(Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_1_Adjancy_Matrix), Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_2_Adjancy_Matrix));
+                    bool result = GraphFunctions95.Graph_Functions.Graph_Isomorphism(GraphFunctions95.Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_1_Adjancy_Matrix), GraphFunctions95.Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_2_Adjancy_Matrix));
                     long time = S.ElapsedMilliseconds;
                     D1[i1] += (double)time;
                     
@@ -140,8 +140,8 @@ namespace ClassLibrary1
             
                 a1 = Class2.Permute(Z1, r);
                 a2 = Class2.Permute(Z1, r);
-                b1 = Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a1);
-                b2 = Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a2);
+                b1 = GraphFunctions95.Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a1);
+                b2 = GraphFunctions95.Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a2);
                 c1 = Compare_Matrices(b1, b2);
                 Console.WriteLine("Test_4       Rasult:" + c1);
 
@@ -174,7 +174,7 @@ namespace ClassLibrary1
         public static void Test_5()
         {
             Random r = new Random();
-            Mark_Graph g1 = new Mark_Graph();
+            GraphFunctions95.Mark_Graph g1 = new GraphFunctions95.Mark_Graph();
             int n1 = 100;
             int t1, t2;
             bool[,] Z1;
@@ -185,8 +185,8 @@ namespace ClassLibrary1
                 Z1 = Class2.Create_Random_Adjancy_Matrix(n1, r);
                 a1 = Class2.Permute(Z1, r);
                 a2 = Class2.Permute(Z1, r);
-                t1 = g1.F01(a1);
-                t2 = g1.F01(a2);
+                t1 = g1.Insert(a1);
+                t2 = g1.Insert(a2);
                 c1 = t1 == t2;
                 Console.WriteLine("Test_5       Rasult:" + c1);
                
@@ -200,9 +200,9 @@ namespace ClassLibrary1
         {
             Random r = new Random();
             bool[,] z = Class2.Create_Random_Adjancy_Matrix(100, r);
-            int[] b1 = Graph_Functions.Transform_Bool_Matrix_To_Int_Array(z);
-            bool[,] v1 = Graph_Functions.Transform_Int_Array_To_Bool_Matrix(b1);
-            Console.WriteLine("Test_6       Result:" + Graph_Functions.Are_Identical_Matrixes(z, v1));
+            int[] b1 = GraphFunctions95.Graph_Functions.Transform_Bool_Matrix_To_Int_Array(z);
+            bool[,] v1 = GraphFunctions95.Graph_Functions.Transform_Int_Array_To_Bool_Matrix(b1);
+            Console.WriteLine("Test_6       Result:" + GraphFunctions95.Graph_Functions.Are_Identical_Matrixes(z, v1));
         }
 
         public static void Test_7()
@@ -213,9 +213,9 @@ namespace ClassLibrary1
             F_1_Adjancy_Matrix = Class2.F1(5,50);
             bool[,] F_2_Adjancy_Matrix = Class2.Permute(F_1_Adjancy_Matrix, r);
             t1.Start();
-            bool is_isomorphic = Graph_Functions.Graph_Isomorphism(
-                Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_1_Adjancy_Matrix),
-                Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_2_Adjancy_Matrix));
+            bool is_isomorphic = GraphFunctions95.Graph_Functions.Graph_Isomorphism(
+               GraphFunctions95.Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_1_Adjancy_Matrix),
+               GraphFunctions95.Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_2_Adjancy_Matrix));
             long time = t1.ElapsedMilliseconds;
             Console.WriteLine(
                 "\n\nTest_7"
@@ -241,9 +241,9 @@ namespace ClassLibrary1
 
                 a1 = Class2.Permute(Z1, r);
                 a2 = Class2.Permute(Z1, r);
-                b1 = Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a1);
-                b2 = Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a2);
-                c1 = Graph_Functions.Are_Identical_Matrixes(b1, b2);
+                b1 = GraphFunctions95.Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a1);
+                b2 = GraphFunctions95.Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a2);
+                c1 = GraphFunctions95.Graph_Functions.Are_Identical_Matrixes(b1, b2);
                 Console.WriteLine("Test_8       Rasult:" + c1);
 
             
@@ -252,10 +252,10 @@ namespace ClassLibrary1
         public static void Test_Graph_Key_Dictionary()
         {
             Random rand = new Random();
-            Graph_Key_Dictionary<int> A = new Graph_Key_Dictionary<int>();
+            GraphFunctions95.Graph_Key_Dictionary<int> A = new GraphFunctions95.Graph_Key_Dictionary<int>();
             bool[,] b1 = Class2.Create_Random_Adjancy_Matrix(100,rand);
             A.Add(b1,1);
-            Console.WriteLine("Test_Graph_Key_Dictionary      Result: "+A.ContainsKey(b1));
+            Console.WriteLine("Test_Graph_Key_Dictionary      Result: " + A.ContainsKey(b1));
 
 
 

@@ -42,10 +42,10 @@ namespace Test_For_Algorithm
 
             // Class1.Test_7();
             Test_Graph_Functions.Test_4();
-            Test_Graph_Functions.Test_8();
-
             Test_Graph_Functions.Test_5();
             Test_Graph_Functions.Test_6();
+            Test_Graph_Functions.Test_8();
+
             Test_Graph_Functions.Test_Graph_Key_Dictionary();
             Console.ReadLine();
         }

@@ -64,6 +64,12 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GraphFunctionsUN95\GraphFunctions95.csproj">
+      <Project>{60a0d24a-0b24-4519-85ca-90123431096c}</Project>
+      <Name>GraphFunctions95</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
