@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_for_algorithm", "Test_for_algorithm\Test_for_algorithm.csproj", "{C8FA764F-A1EE-4DE0-8D1A-1C2833E9438B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphFunctionsUN95", "GraphFunctionsUN95\GraphFunctionsUN95.csproj", "{73BCCDB5-D0D3-4794-A7FA-577114602153}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{C8FA764F-A1EE-4DE0-8D1A-1C2833E9438B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8FA764F-A1EE-4DE0-8D1A-1C2833E9438B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8FA764F-A1EE-4DE0-8D1A-1C2833E9438B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73BCCDB5-D0D3-4794-A7FA-577114602153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73BCCDB5-D0D3-4794-A7FA-577114602153}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73BCCDB5-D0D3-4794-A7FA-577114602153}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73BCCDB5-D0D3-4794-A7FA-577114602153}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0512FA86-CCA2-4F1F-AE86-9E32922F8E52}
 	EndGlobalSection
 EndGlobal

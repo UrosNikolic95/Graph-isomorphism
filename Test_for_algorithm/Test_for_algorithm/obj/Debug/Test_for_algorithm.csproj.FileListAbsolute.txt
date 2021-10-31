@@ -31,3 +31,10 @@ C:\Users\43199\OneDrive\Desktop\GI\Test_for_algorithm\Test_for_algorithm\obj\Deb
 C:\Users\43199\OneDrive\Desktop\GI\Test_for_algorithm\Test_for_algorithm\bin\Debug\Test_For_Algorithm.exe
 C:\Users\43199\OneDrive\Desktop\GI\Test_for_algorithm\Test_for_algorithm\bin\Debug\Test_For_Algorithm.pdb
 C:\Users\43199\OneDrive\Desktop\GI\Test_for_algorithm\Test_for_algorithm\obj\Debug\Test_for_algorithm.csprojResolveAssemblyReference.cache
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\Test_for_algorithm\bin\Debug\Test_For_Algorithm.exe.config
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\Test_for_algorithm\bin\Debug\Test_For_Algorithm.exe
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\Test_for_algorithm\bin\Debug\Test_For_Algorithm.pdb
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\Test_for_algorithm\obj\Debug\Test_for_algorithm.csproj.AssemblyReference.cache
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\Test_for_algorithm\obj\Debug\Test_for_algorithm.csproj.CoreCompileInputs.cache
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\Test_for_algorithm\obj\Debug\Test_For_Algorithm.exe
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\Test_for_algorithm\obj\Debug\Test_For_Algorithm.pdb
