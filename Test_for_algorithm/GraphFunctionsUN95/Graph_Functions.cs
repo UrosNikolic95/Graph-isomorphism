@@ -778,19 +778,19 @@ namespace GraphFunctions95
         }
 
 
-        static char bit_switch(int a1, bool b1, char ch1)
+        static char bit_switch(int index, bool switch_on, char value)
         {
-            if (a1 < 8)
+            if (index < 8)
             {
-                if (b1)
+                if (switch_on)
                 {
-                    ch1 = (char)(ch1 | (char)Math.Pow(2, a1));
+                    value = (char)(value | (char)Math.Pow(2, index));
                 }
                 else
                 {
-                    ch1 = (char)(ch1 & (~(char)Math.Pow(2, a1)));
+                    value = (char)(value & (~(char)Math.Pow(2, index)));
                 }
-                return ch1;
+                return value;
             }
             else
             {
@@ -798,19 +798,19 @@ namespace GraphFunctions95
             }
         }
 
-        private static int bit_switch(int a1, bool b1, int c1)
+        private static int bit_switch(int index, bool switch_on, int value)
         {
-            if (a1 < 32)
+            if (index < 32)
             {
-                if (b1)
+                if (switch_on)
                 {
-                    c1 = c1 | (1 << a1);
+                    value = value | (1 << index);
                 }
                 else
                 {
-                    c1 = c1 & (~(1 << a1));
+                    value = value & (~(1 << index));
                 }
-                return c1;
+                return value;
             }
             else
             {

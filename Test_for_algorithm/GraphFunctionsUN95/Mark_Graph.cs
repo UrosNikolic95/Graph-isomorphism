@@ -22,14 +22,14 @@ namespace GraphFunctions95
             mrk_int_list.Clear();
         }
 
-        public int F01(bool[,] a1)
+        public int Insert(bool[,] a1)
         {
             return mrk_int_list.Get_Marker(
                 Graph_Functions.Transform_Bool_Matrix_To_Int_Array(
                     Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a1)).ToList());
         }
 
-        public bool[,] F06(int a1)
+        public bool[,] Get(int a1)
         {
             return Graph_Functions.Transform_Int_Array_To_Bool_Matrix(mrk_int_list.Get_Int_Array(a1));
         }

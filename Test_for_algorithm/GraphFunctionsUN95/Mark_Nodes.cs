@@ -113,7 +113,7 @@ namespace GraphFunctions95
             int[][][] array3D = new int[4][][];
             array3D[0] = Calculate_Distences_From_Each_Node(adjancyMatrix);
             array3D[1] = Count_Neighburs_With_Smaler_Distances_For_Each_Node(array3D[0], adjancyMatrix);
-            array3D[2] = CountNeighbursWithEqualDistancesForEachNode(array3D[0], adjancyMatrix);
+            array3D[2] = Count_Neighburs_With_Equal_Distances_For_Each_Node(array3D[0], adjancyMatrix);
             array3D[3] = Count_Neighburs_With_Greater_Distances_For_Each_Node(array3D[0], adjancyMatrix);
             int[] handleIntArray;
             int[] array1D;
@@ -155,7 +155,7 @@ namespace GraphFunctions95
             int[][][] array3D = new int[4][][];
             array3D[0] = Calculate_Distences_From_Each_Node(adjancyMatrix);
             array3D[1] = Count_Neighburs_With_Smaler_Distances_For_Each_Node(array3D[0], adjancyMatrix);
-            array3D[2] = CountNeighbursWithEqualDistancesForEachNode(array3D[0], adjancyMatrix);
+            array3D[2] = Count_Neighburs_With_Equal_Distances_For_Each_Node(array3D[0], adjancyMatrix);
             array3D[3] = Count_Neighburs_With_Greater_Distances_For_Each_Node(array3D[0], adjancyMatrix);
             int[] t1;
             int[] array1D;
@@ -245,7 +245,10 @@ namespace GraphFunctions95
             return R1;
         }
 
-        static int[][] CountNeighbursWithEqualDistancesForEachNode(int[][] a1, bool[,] adjancyMatrix)
+
+
+
+        static int[][] Count_Neighburs_With_Equal_Distances_For_Each_Node(int[][] a1, bool[,] adjancyMatrix)
         {
             int[][] R1 = new int[a1.Length][];
             int i1;
