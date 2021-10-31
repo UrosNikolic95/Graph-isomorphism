@@ -1,0 +1,6 @@
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions95\bin\Debug\GraphFunctions95.dll
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions95\bin\Debug\GraphFunctions95.pdb
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions95\obj\Debug\GraphFunctions95.csproj.AssemblyReference.cache
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions95\obj\Debug\GraphFunctions95.csproj.CoreCompileInputs.cache
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions95\obj\Debug\GraphFunctions95.dll
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions95\obj\Debug\GraphFunctions95.pdb

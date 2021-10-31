@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GraphFunctionsUN95
 {
-    public class Test_Graph_Functions
+    public class TestGraphFunctions
     {
 
 
