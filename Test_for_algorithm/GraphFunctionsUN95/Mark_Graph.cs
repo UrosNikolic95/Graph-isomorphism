@@ -26,7 +26,7 @@ namespace GraphFunctions95
         {
             return mrk_int_list.Get_Marker(
                 Graph_Functions.Transform_Bool_Matrix_To_Int_Array(
-                    Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a1)).ToList());
+                    Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a1)));
         }
 
         public bool[,] Get(int a1)

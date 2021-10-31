@@ -47,14 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Graph_Key_Dictionary.cs" />
     <Compile Include="Test_Graph_Functions.cs" />
     <Compile Include="Class2.cs" />
     <Compile Include="Class3.cs" />
-    <Compile Include="Graph_Functions.cs" />
-    <Compile Include="Mark_Int_List.cs" />
-    <Compile Include="Mark_Graph.cs" />
-    <Compile Include="K4.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

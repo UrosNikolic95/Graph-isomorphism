@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using ClassLibrary1;
-using G1K;
-using UN95;
  
 
 namespace Test_For_Algorithm

@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Diagnostics;
-using UN95;
-using G1K;
 using Test_For_Algorithm;
 
 

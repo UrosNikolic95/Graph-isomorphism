@@ -150,7 +150,7 @@ namespace GraphFunctions95
                     {
                         t1[i3] = array3D[i3][i1][i2];
                     }
-                    array2D[i1, i2] = mark_int_list.Get_Marker(t1.ToList());
+                    array2D[i1, i2] = mark_int_list.Get_Marker(t1);
                 }
             }
             return Replace_Markers_With_Indexes(mark_int_list.Get_All_Marker_Maping(), array2D);
@@ -171,7 +171,7 @@ namespace GraphFunctions95
 
                 }
                 Array.Sort(t1);
-                array1D[i1] = mark_int_list.Get_Marker(t1.ToList());
+                array1D[i1] = mark_int_list.Get_Marker(t1);
             }
             return Replace_Markers_With_Indexes(mark_int_list.Get_All_Marker_Maping(), array1D);
 
@@ -394,7 +394,7 @@ namespace GraphFunctions95
 
             }
             L1.Sort();
-            t2_b[i1] = a1.Get_Marker(L1);
+            t2_b[i1] = a1.Get_Marker(L1.ToArray());
         }
 
         private static bool[,] Rearange_Matrix_According_To_Markers(bool[,] b, int[] t1_b)

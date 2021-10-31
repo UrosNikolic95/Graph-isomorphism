@@ -129,7 +129,7 @@ namespace GraphFunctions95
                     {
                         handleIntArray[i3] = array3D[i3][i1][i2];
                     }
-                    array2D[i1, i2] = markIntList.Get_Marker(handleIntArray.ToList());
+                    array2D[i1, i2] = markIntList.Get_Marker(handleIntArray);
                 }
             }
             array2D = Replace_Markers_With_Indexes(markIntList.Get_All_Marker_Maping(), array2D);
@@ -143,7 +143,7 @@ namespace GraphFunctions95
 
                 }
                 Array.Sort(handleIntArray);
-                array1D[i1] = markIntList.Get_Marker(handleIntArray.ToList());
+                array1D[i1] = markIntList.Get_Marker(handleIntArray);
             }
             array1D = Replace_Markers_With_Indexes(markIntList.Get_All_Marker_Maping(), array1D);
             return array1D;
@@ -174,7 +174,7 @@ namespace GraphFunctions95
                     {
                         t1[i3] = array3D[i3][i1][i2];
                     }
-                    array2D[i1, i2] = markIntList.Get_Marker(t1.ToList());
+                    array2D[i1, i2] = markIntList.Get_Marker(t1);
                 }
             }
             array1D = new int[array2D.GetLength(0)];
@@ -187,7 +187,7 @@ namespace GraphFunctions95
 
                 }
                 Array.Sort(t1);
-                array1D[i1] = markIntList.Get_Marker(t1.ToList());
+                array1D[i1] = markIntList.Get_Marker(t1);
             }
 
             return array1D;
