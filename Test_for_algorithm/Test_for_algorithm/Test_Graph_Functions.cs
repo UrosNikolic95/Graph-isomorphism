@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Diagnostics;
 using Test_For_Algorithm;
 using GraphFunctions95;
-
 namespace ClassLibrary1
 {
     public class Test_Graph_Functions
     {
-
-
         public static void Test_1_isomorphic_samples(int n)
         {
             Random r = new Random();
@@ -31,10 +27,7 @@ namespace ClassLibrary1
                 + "\nnumber of nodes:" + F_1_Adjancy_Matrix.GetLength(0).ToString().PadLeft(10)
                 + "\ntime in miliseconds:" + time.ToString().PadLeft(10));
             Console.WriteLine("///  " + is_isomorphic);
-
         }
-
-
         public static void Test_2_NOT_isomorphic_samples(int n)
         {
             Random r = new Random();
@@ -49,10 +42,7 @@ namespace ClassLibrary1
                 + "\nnumber of nodes:" + n.ToString().PadLeft(10)
                 + "\ntime in miliseconds:" + time.ToString().PadLeft(10));
             Console.WriteLine("///  " + !is_isomorphic);
-
         }
-
-
         public class input_test_3
         {
             public int starting_number_of_nodes;
@@ -61,12 +51,10 @@ namespace ClassLibrary1
             public int repeatings_for_each_case;
             public bool are_isomorphic;
         }
-
         public class output_test_3
         {
             public int[] number_of_nodes;
             public double[] average_times;
-
             public void print()
             {
                 string s1 = "number of nodes";
@@ -81,9 +69,7 @@ namespace ClassLibrary1
                     Console.WriteLine(number_of_nodes[i1].ToString().PadLeft(n1) + average_times[i1].ToString("F3").PadLeft(n2));
                 }
             }
-
         }
-
         public static void Test_3(input_test_3 A1, out output_test_3 B1)
         {
             int number_of_nodes;
@@ -109,22 +95,17 @@ namespace ClassLibrary1
                     {
                         F_2_Adjancy_Matrix = Class2.Create_Random_Adjancy_Matrix(number_of_nodes, r);
                     }
-
                     S.Restart();
                     bool result = Graph_Functions.Graph_Isomorphism(Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_1_Adjancy_Matrix), Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_2_Adjancy_Matrix));
                     long time = S.ElapsedMilliseconds;
                     D1[i1] += (double)time;
-
                 }
                 D1[i1] /= A1.repeatings_for_each_case;
-
             }
             B1 = new output_test_3();
             B1.average_times = D1;
             B1.number_of_nodes = G1;
-
         }
-
         public static void Test_4()
         {
             Random r = new Random();
@@ -135,21 +116,13 @@ namespace ClassLibrary1
             bool[,] b1;
             bool[,] b2;
             bool c1;
-
             a1 = Class2.Permute(Z1, r);
             a2 = Class2.Permute(Z1, r);
             b1 = Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a1);
             b2 = Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a2);
             c1 = Compare_Matrices(b1, b2);
             Console.WriteLine("Test_4       Rasult:" + c1);
-
-
-
-
-
         }
-
-
         private static bool Compare_Matrices(bool[,] k1, bool[,] k2)
         {
             int i1, i2;
@@ -165,10 +138,6 @@ namespace ClassLibrary1
             }
             return true;
         }
-
-
-
-
         public static void Test_5()
         {
             Random r = new Random();
@@ -179,7 +148,6 @@ namespace ClassLibrary1
             bool[,] a1;
             bool[,] a2;
             bool c1;
-
             Z1 = Class2.Create_Random_Adjancy_Matrix(n1, r);
             a1 = Class2.Permute(Z1, r);
             a2 = Class2.Permute(Z1, r);
@@ -187,13 +155,7 @@ namespace ClassLibrary1
             t2 = g1.Insert(a2);
             c1 = t1 == t2;
             Console.WriteLine("Test_5       Rasult:" + c1);
-
-
-
-
         }
-
-
         public static void Test_6()
         {
             Random r = new Random();
@@ -202,7 +164,6 @@ namespace ClassLibrary1
             bool[,] v1 = Graph_Functions.Transform_Int_Array_To_Bool_Matrix(b1);
             Console.WriteLine("Test_6       Result:" + Graph_Functions.Are_Identical_Matrixes(z, v1));
         }
-
         public static void Test_7()
         {
             Random r = new Random();
@@ -219,14 +180,7 @@ namespace ClassLibrary1
                 "\n\nTest_7"
                 + "\ntime in miliseconds:" + time.ToString().PadLeft(10));
             Console.WriteLine("///  " + is_isomorphic);
-
         }
-
-
-
-
-
-
         public static void Test_8()
         {
             Random r = new Random();
@@ -236,17 +190,13 @@ namespace ClassLibrary1
             bool[,] b1;
             bool[,] b2;
             bool c1;
-
             a1 = Class2.Permute(Z1, r);
             a2 = Class2.Permute(Z1, r);
             b1 = Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a1);
             b2 = Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a2);
             c1 = Graph_Functions.Are_Identical_Matrixes(b1, b2);
             Console.WriteLine("Test_8       Rasult:" + c1);
-
-
         }
-
         public static void Test_Graph_Key_Dictionary()
         {
             Random rand = new Random();
@@ -254,10 +204,6 @@ namespace ClassLibrary1
             bool[,] b1 = Class2.Create_Random_Adjancy_Matrix(100, rand);
             A.Add(b1, 1);
             Console.WriteLine("Test_Graph_Key_Dictionary      Result: " + A.ContainsKey(b1));
-
-
-
         }
-
     }
 }

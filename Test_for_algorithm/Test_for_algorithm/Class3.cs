@@ -3,45 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Test_For_Algorithm
 {
-    
     public class Class3
     {
-        
-        
-
-
-
         public static bool[,] F2()
         {
             int t3;
             int n1 = 200;
-
- 
-   
             Random r = new Random();
             bool[,] b1 = new bool[n1, n1];
-    
             int i1;
-          
-        
             for (i1 = 1; i1 < n1; i1++)//tree
             {
                 t3 = r.Next() % i1;
-   
                 b1[i1, t3] = true;
                 b1[t3, i1] = true;
-               
-              
-    
-                
             }
-
             return b1;
         }
-
         static public bool[,] F1()//make non directional regular graph 
         {
             int t1,t2,t3,t4,t5;
@@ -76,8 +56,6 @@ namespace Test_For_Algorithm
                     L1.Add(i1);
                 }
             }
-
-            
             t1 = L1.Count;
             for(i1=0;(i1< t1)&&(L1.Count!=0);i1++)
             {
@@ -98,8 +76,6 @@ namespace Test_For_Algorithm
                     }
                 }
             }
-            
-
             int[,] c1 = new int[n1,n3];
             t1 = 0;
             for(i1=0;i1< n1;i1++)
@@ -134,22 +110,6 @@ namespace Test_For_Algorithm
                 }
             }
             return b2;
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

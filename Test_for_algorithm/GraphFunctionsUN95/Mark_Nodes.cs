@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-
-
-
 namespace GraphFunctions95
 {
     public class Mark_Nodes
     {
-
         private static int[,] Replace_Markers_With_Indexes(int[] markerMaping, int[,] array2D)
         {
-
             Dictionary<int, int> D1 = new Dictionary<int, int>();
             int i1, i2;
             for (i1 = 0; i1 < markerMaping.Length; i1++)
@@ -33,11 +27,8 @@ namespace GraphFunctions95
             }
             return array2D;
         }
-
-
         private static int[] Replace_Markers_With_Indexes(int[] markerMaping, int[] array1D)
         {
-
             Dictionary<int, int> D1 = new Dictionary<int, int>();
             int i1;
             for (i1 = 0; i1 < markerMaping.Length; i1++)
@@ -50,11 +41,9 @@ namespace GraphFunctions95
             {
                 D1.TryGetValue(array1D[i1], out t1);
                 array1D[i1] = t1;
-
             }
             return array1D;
         }
-
         private static int[] Calculate_Distances_From_Node_BFS(bool[,] adjancyMatrix, int indexOfStartingNode)
         {
             List<int> L1 = new List<int>();
@@ -85,17 +74,10 @@ namespace GraphFunctions95
                             shortest_distances[i1] = t1 + 1;
                         }
                     }
-
                 }
-
-
-
-
             }
             return shortest_distances;
         }
-
-
         static int[][] Calculate_Distences_From_Each_Node(bool[,] adjancyMatrix)
         {
             int[][] R1 = new int[adjancyMatrix.GetLength(0)][];
@@ -104,10 +86,8 @@ namespace GraphFunctions95
             {
                 R1[i1] = Calculate_Distances_From_Node_BFS(adjancyMatrix, i1);
             }
-
             return R1;
         }
-
         public static int[] Get_Node_Markers(bool[,] adjancyMatrix, Mark_Int_List markIntList)
         {
             int[][][] array3D = new int[4][][];
@@ -119,7 +99,6 @@ namespace GraphFunctions95
             int[] array1D;
             int i1, i2, i3;
             int[,] array2D = new int[array3D[0].Length, array3D[0].Length];
-
             for (i1 = 0; i1 < array3D[0].Length; i1++)
             {
                 for (i2 = 0; i2 < array3D[0][0].Length; i2++)
@@ -140,19 +119,13 @@ namespace GraphFunctions95
                 for (i2 = 0; i2 < array2D.GetLength(1); i2++)
                 {
                     handleIntArray[i2] = array2D[i1, i2];
-
                 }
                 Array.Sort(handleIntArray);
                 array1D[i1] = markIntList.Get_Marker(handleIntArray);
             }
             array1D = Replace_Markers_With_Indexes(markIntList.Get_All_Marker_Maping(), array1D);
             return array1D;
-
         }
-
-
-
-
         public static int[] Get_Node_Markers_No_Marker_Replacement(bool[,] adjancyMatrix, Mark_Int_List markIntList)
         {
             int[][][] array3D = new int[4][][];
@@ -164,7 +137,6 @@ namespace GraphFunctions95
             int[] array1D;
             int i1, i2, i3;
             int[,] array2D = new int[array3D[0].Length, array3D[0].Length];
-
             for (i1 = 0; i1 < array3D[0].Length; i1++)
             {
                 for (i2 = 0; i2 < array3D[0][0].Length; i2++)
@@ -184,16 +156,12 @@ namespace GraphFunctions95
                 for (i2 = 0; i2 < array2D.GetLength(1); i2++)
                 {
                     t1[i2] = array2D[i1, i2];
-
                 }
                 Array.Sort(t1);
                 array1D[i1] = markIntList.Get_Marker(t1);
             }
-
             return array1D;
-
         }
-
         static int[] Count_Neighburs_With_Smaler_Distances(int[] a1, bool[,] adjancyMatrix)
         {
             int[] R1 = new int[a1.Length];
@@ -207,14 +175,12 @@ namespace GraphFunctions95
                         if (a1[i1] < a1[i2])
                         {
                             R1[i1] += 1;
-
                         }
                     }
                 }
             }
             return R1;
         }
-
         static int[][] Count_Neighburs_With_Smaler_Distances_For_Each_Node(int[][] a1, bool[,] adjancyMatrix)
         {
             int[][] R1 = new int[a1.Length][];
@@ -225,8 +191,6 @@ namespace GraphFunctions95
             }
             return R1;
         }
-
-
         static int[] Count_Neighburs_With_Equal_Distances(int[] a1, bool[,] adjancyMatrix)
         {
             int[] R1 = new int[a1.Length];
@@ -240,17 +204,12 @@ namespace GraphFunctions95
                         if (a1[i1] == a1[i2])
                         {
                             R1[i1] += 1;
-
                         }
                     }
                 }
             }
             return R1;
         }
-
-
-
-
         static int[][] Count_Neighburs_With_Equal_Distances_For_Each_Node(int[][] a1, bool[,] adjancyMatrix)
         {
             int[][] R1 = new int[a1.Length][];
@@ -261,8 +220,6 @@ namespace GraphFunctions95
             }
             return R1;
         }
-
-
         static int[] Count_Neighburs_With_Greater_Distances(int[] a1, bool[,] adjancyMatrix)
         {
             int[] R1 = new int[a1.Length];
@@ -276,14 +233,12 @@ namespace GraphFunctions95
                         if (a1[i1] > a1[i2])
                         {
                             R1[i1] += 1;
-
                         }
                     }
                 }
             }
             return R1;
         }
-
         static int[][] Count_Neighburs_With_Greater_Distances_For_Each_Node(int[][] a1, bool[,] adjancyMatrix)
         {
             int[][] R1 = new int[a1.Length][];
@@ -294,6 +249,5 @@ namespace GraphFunctions95
             }
             return R1;
         }
-
     }
 }

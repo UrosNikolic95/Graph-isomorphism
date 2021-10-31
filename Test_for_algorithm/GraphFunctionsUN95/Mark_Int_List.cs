@@ -3,46 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace GraphFunctions95
 {
-
-
-
-
-
     public class Mark_Int_List
     {
         private int Mark_Counter;
         private List<El> list_Of_Arrays;
-
         public Mark_Int_List()
         {
             Mark_Counter = 0;
             list_Of_Arrays = new List<El>();
         }
-
         public void Clear()
         {
             Mark_Counter = 0;
             list_Of_Arrays.Clear();
         }
-
         public int Get_Marker(int a1)
         {
             return list_Of_Arrays.ElementAt(a1).Mark;
         }
-
         public int[] Get_Int_Array(int a1)
         {
             return list_Of_Arrays.ElementAt(a1).list.ToArray();
         }
-
         public int Get_Length()
         {
             return list_Of_Arrays.Count;
         }
-
         public int[] Get_All_Marker_Maping()
         {
             int[] G1 = new int[list_Of_Arrays.Count];
@@ -53,8 +41,6 @@ namespace GraphFunctions95
             }
             return G1;
         }
-
-
         public int[][] Get_All_Int_Arrays()
         {
             int[][] G1 = new int[list_Of_Arrays.Count][];
@@ -65,7 +51,6 @@ namespace GraphFunctions95
             }
             return G1;
         }
-
         private char Compare_Int_Arrays(int[] a1, int[] a2)
         {
             if (a1.Length < a2.Length)
@@ -120,7 +105,6 @@ namespace GraphFunctions95
             index = min;
             return false;
         }
-
         public int Get_Marker(int[] L)
         {//n*log(base:2,n)
             int t2;
@@ -141,4 +125,3 @@ namespace GraphFunctions95
         public int Mark;
     }
 }
-
