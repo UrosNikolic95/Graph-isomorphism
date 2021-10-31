@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GraphFunctionsUN95
+namespace GraphFunctions95
 {
     public class Graph_Key_Dictionary<Type>
     {
@@ -15,17 +15,17 @@ namespace GraphFunctionsUN95
         {
             get
             {
-              
-               return dictionary[
-                   Graph_Functions.Transform_Bool_Matrix_To_Int_Array(
-                       Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(key))];
+
+                return dictionary[
+                    Graph_Functions.Transform_Bool_Matrix_To_Int_Array(
+                        Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(key))];
             }
 
             set
             {
                 dictionary[
                     Graph_Functions.Transform_Bool_Matrix_To_Int_Array(
-                        Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(key))]=value;
+                        Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(key))] = value;
             }
         }
 
@@ -37,15 +37,15 @@ namespace GraphFunctionsUN95
             }
         }
 
-       
+
 
         public ICollection<bool[,]> Keys
         {
             get
             {
-                int[][] A= dictionary.Keys.ToArray();
+                int[][] A = dictionary.Keys.ToArray();
                 bool[][,] B = new bool[A.Length][,];
-                for(int i1=0;i1<A.Length;i1++)
+                for (int i1 = 0; i1 < A.Length; i1++)
                 {
                     B[i1] = Graph_Functions.Transform_Int_Array_To_Bool_Matrix(A[i1]);
                 }
@@ -61,7 +61,7 @@ namespace GraphFunctionsUN95
             }
         }
 
-       
+
 
         public void Add(bool[,] key, Type value)
         {
@@ -76,7 +76,7 @@ namespace GraphFunctionsUN95
             dictionary.Clear();
         }
 
-        
+
         public bool ContainsKey(bool[,] key)
         {
             return dictionary.ContainsKey(
@@ -84,12 +84,12 @@ namespace GraphFunctionsUN95
                         Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(key)));
         }
 
-      
-      
+
+
         public bool Remove(bool[,] key)
         {
-           return dictionary.Remove(Graph_Functions.Transform_Bool_Matrix_To_Int_Array(
-                        Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(key)));
+            return dictionary.Remove(Graph_Functions.Transform_Bool_Matrix_To_Int_Array(
+                         Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(key)));
         }
 
         public bool TryGetValue(bool[,] key, out Type value)
@@ -100,7 +100,7 @@ namespace GraphFunctionsUN95
                out value);
         }
 
-       
+
 
         class Graph_Comparer : IEqualityComparer<int[]>
         {
@@ -113,7 +113,7 @@ namespace GraphFunctionsUN95
             {
                 int hash = 0;
                 int i1;
-                for(i1=0;i1<obj.Length;i1++)
+                for (i1 = 0; i1 < obj.Length; i1++)
                 {
                     hash ^= obj[i1];
                 }

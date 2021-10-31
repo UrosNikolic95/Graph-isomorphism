@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace GraphFunctionsUN95
+namespace GraphFunctions95
 {
     public class Mark_Graph
     {
@@ -24,18 +24,18 @@ namespace GraphFunctionsUN95
 
         public int F01(bool[,] a1)
         {
-           return mrk_int_list.Get_Marker(
-               Graph_Functions.Transform_Bool_Matrix_To_Int_Array(
-                   Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a1)).ToList());
+            return mrk_int_list.Get_Marker(
+                Graph_Functions.Transform_Bool_Matrix_To_Int_Array(
+                    Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(a1)).ToList());
         }
 
         public bool[,] F06(int a1)
         {
-           return Graph_Functions.Transform_Int_Array_To_Bool_Matrix(mrk_int_list.Get_Int_Array(a1));
+            return Graph_Functions.Transform_Int_Array_To_Bool_Matrix(mrk_int_list.Get_Int_Array(a1));
         }
 
 
-       
-       
+
+
     }
 }
