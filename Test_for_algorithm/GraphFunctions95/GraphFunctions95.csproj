@@ -42,16 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generate_Test_Graph.cs" />
-    <Compile Include="Class3.cs" />
     <Compile Include="Graph_Functions.cs" />
     <Compile Include="Graph_Key_Dictionary.cs" />
-    <Compile Include="MarkNodes.cs" />
+    <Compile Include="Mark_Nodes.cs" />
     <Compile Include="Mark_Graph.cs" />
     <Compile Include="Mark_Int_List.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test_Graph_Functions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
