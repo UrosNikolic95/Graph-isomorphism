@@ -10,7 +10,7 @@ namespace ClassLibrary1
 {
     public class Test_Graph_Functions
     {
-        public static void Test_1_isomorphic_samples(int n)
+        public static void Test_1_isomorphic_samples()
         {
             Random r = new Random();
             Stopwatch t1 = new Stopwatch();
@@ -26,7 +26,7 @@ namespace ClassLibrary1
                 "\n\nisomorphic samples"
                 + "\nnumber of nodes:" + F_1_Adjancy_Matrix.GetLength(0).ToString().PadLeft(10)
                 + "\ntime in miliseconds:" + time.ToString().PadLeft(10));
-            Console.WriteLine("///  " + is_isomorphic);
+            Console.WriteLine("is isomorpfic:  " + is_isomorphic);
         }
         public static void Test_2_NOT_isomorphic_samples(int n)
         {

@@ -85,18 +85,20 @@ namespace GraphFunctions95
             }
             return R1;
         }
-        private static int[] Get_Node_Markers(uint[][] adjancy_lists)
-        {
-            Mark_Int_List mark_int_list = new Mark_Int_List();
+
+        private static int[][][] Create_3D_Array(uint[][] adjancy_lists) {
             int[][][] array3D = new int[4][][];
             array3D[0] = Calculate_Distances_From_Each_Node(adjancy_lists);
             array3D[1] = Count_Neighburs_With_Smaler_Distances_From_Each_Node(array3D[0], adjancy_lists);
             array3D[2] = Count_Neighburs_With_Equal_Distances_From_Each_Node(array3D[0], adjancy_lists);
             array3D[3] = Count_Neighburs_With_Greater_Distances_From_Each_Node(array3D[0], adjancy_lists);
-            int[] array1D;
-            int[,] array2D;
-            array2D = From_3D_Array_To_2D_Array(array3D);
-            array1D = From_2D_Array_To_1D_Array(array2D);
+            return array3D;
+        }
+        private static int[] Get_Node_Markers(uint[][] adjancy_lists)
+        {
+            int[][][] array3D = Create_3D_Array(adjancy_lists);
+            int[,] array2D = From_3D_Array_To_2D_Array(array3D);
+            int[] array1D = From_2D_Array_To_1D_Array(array2D);
             return array1D;
         }
         private static int[,] From_3D_Array_To_2D_Array(int[][][] array3D)

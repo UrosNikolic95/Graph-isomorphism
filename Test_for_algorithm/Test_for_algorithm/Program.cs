@@ -14,7 +14,7 @@ namespace Test_For_Algorithm
             // Class1.Test_1_isomorphic_samples(500);
             // Class1.Test_1_isomorphic_samples(750);
             // Class1.Test_1_isomorphic_samples(1000);
-             Test_Graph_Functions.Test_1_isomorphic_samples(100);
+             Test_Graph_Functions.Test_1_isomorphic_samples();
             //    Class1.Test_2_NOT_isomorphic_samples(250);
             //   Class1.Test_2_NOT_isomorphic_samples(500);
             //   Class1.Test_2_NOT_isomorphic_samples(750);
