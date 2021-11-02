@@ -316,6 +316,17 @@ namespace GraphFunctions95
             L1.Sort();
             t2_b[i1] = a1.Get_Marker(L1.ToArray());
         }
+
+        private static int Get_New_Marker_For_Single_NodeV2(Mark_Int_List a1, uint[] v_b,  int[] t1_b)
+        {
+            List<int> L1 = new List<int>();
+            for (int i1 = 0; i1 < v_b.Length; i1++)
+            {
+                L1.Add(t1_b[v_b[i1]]);
+            }
+            L1.Sort();
+            return a1.Get_Marker(L1.ToArray());
+        }
         private static bool[,] Rearange_Matrix_According_To_Markers(bool[,] b, int[] t1_b)
         {
             int[] g1 = t1_b.ToArray();
@@ -473,9 +484,8 @@ namespace GraphFunctions95
                     {
                         break;
                     }
-                    t2_b1 = new int[t1_b1.Length];
                     G2.Clear();
-                    Get_New_Marker_For_Each_Node(G2, v_b1, t1_b1, t2_b1);
+                    t2_b1 = Get_New_Marker_For_Each_NodeV2(G2, v_b1, t1_b1);
                     if (t1_b1.SequenceEqual(t2_b1))
                     {
                         break;
@@ -497,6 +507,16 @@ namespace GraphFunctions95
             {
                 Get_New_Marker_For_Single_Node(G2, v_b1, i1, t1_b1, t2_b1);
             }
+        }
+
+        private static int[] Get_New_Marker_For_Each_NodeV2(Mark_Int_List G2, uint[][] v_b1, int[] t1_b1)
+        {
+            int[] t2_b1 = new int[t1_b1.Length];
+            for (int i1 = 0; i1 < t1_b1.GetLength(0); i1++)
+            {
+                t2_b1[i1]= Get_New_Marker_For_Single_NodeV2(G2, v_b1[i1],  t1_b1);
+            }
+            return t2_b1;
         }
         private static void Change_Marker(int t4, int[] t1_b1)
         {
