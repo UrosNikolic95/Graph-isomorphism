@@ -4,7 +4,9 @@ This file holds explanation of the simplified version of the algorithm
 that differs from the actual implementation.
 
 Graph isomorphism algorithm:
+
 1.Preliminary marking
+
 2.Breaking symmetry
 
 At this point we will have markings of nodes
@@ -13,8 +15,8 @@ whether nodes are symmetric.
 
 (3.Sort adjancy matrix according to markers and compare.)
 
-1.Preliminary marking:
-1.1.Make 3D array 4*n*n
+## 1.Preliminary marking:
+1.1.Make 3D array 4\*n\*n
 
 1.layer is distances from each node to each node
 2.layer is number of neighbors with larger distance than distance for that node
@@ -52,16 +54,26 @@ the nodes with same marker could be in different order
 and that will give false result that claims that graphs are different when they are not.
 For solving this problem is used step "Breaking symmetry"
 
-2.Breaking symmetry
-2.1.Find marker that repeat itself.
-2.2.Take one node with that marker and change it, while keeping old marker on other nodes.
-2.3.Propagate the change.
-2.3.1.Make tuplets for each node.
-2.3.1.1.Take all neighbors of a node.
-2.3.1.2.Put their markers in list.
-2.3.1.3.Sort list. (because order might vary from case to case)
-2.3.2.Substitute tuplets with markers.(\*1) Those markers are new markers for nodes.
-2.3.3.Repeat this process until reaches all nodes.
+## 2. Breaking symmetry
+
+2.1. Find marker that repeat itself.
+
+2.2. Take one node with that marker and change it, while keeping old marker on other nodes.
+
+2.3. Propagate the change.
+
+2.3.1. Make tuplets for each node.
+
+2.3.1.1. Take all neighbors of a node.
+
+2.3.1.2. Put their markers in list.
+
+2.3.1.3. Sort list. (because order might vary from case to case)
+
+2.3.2. Substitute tuplets with markers.(\*1) Those markers are new markers for nodes.
+
+2.3.3. Repeat this process until reaches all nodes.
 Number of repetitions is equivalent with largest distance, which is at worst case n.
-2.2.Check whether has copies of the same marker, if it has repeat 2.1., if it doesn’t job is done.
+
+2.2. Check whether has copies of the same marker, if it has repeat 2.1., if it doesn’t job is done.
 Number of repetitions is less than number of nodes.
