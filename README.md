@@ -16,30 +16,44 @@ whether nodes are symmetric.
 (3.Sort adjancy matrix according to markers and compare.)
 
 ## 1.Preliminary marking:
+
 1.1.Make 3D array 4\*n\*n
 
-1.layer is distances from each node to each node
-2.layer is number of neighbors with larger distance than distance for that node
-3.layer is number of neighbors with equal distance than distance for that node
-4.layer is number of neighbors with smaller distance than distance for that node
+1. layer is distances from each node to each node
+
+2. layer is number of neighbors with larger distance than distance for that node
+
+3. layer is number of neighbors with equal distance than distance for that node
+
+4. layer is number of neighbors with smaller distance than distance for that node
+
 (layers might be in different order, but that doesn’t matter)
 
 1.2.Subtitute 4-tuplets in 3D array with single number (\*1)
 As result we will get 2D array.
 
 (\*1)Substitution of tuplets
-1.Put all tuplets in list
-2.Sort list of tuplets
-3.Make sure that there are no copies in list of tuplets
-4.Use indexes of tuplets as replacement of tuplets
+
+1. Put all tuplets in list
+
+2. Sort list of tuplets
+
+3. Make sure that there are no copies in list of tuplets
+
+4. Use indexes of tuplets as replacement of tuplets
 
 (This is implemented differently, but it archives same result.)
 
 This process must have following qualities:
-1.It must be deterministic. (For same set of tuplets we need to get same markers)
-2.Each tuplet must have unique marker.
-2.1.Same tuplets must have same marker.
-2.2.Diferent tuplets must have different markers.
+
+1. It must be deterministic.
+   (For same set of tuplets we need to get same markers)
+
+2. Each tuplet must have unique marker.
+
+3. Same tuplets must have same marker.
+
+4. Diferent tuplets must have different markers.
 
 1.3.Sort each row.
 Depending on isomorphism, same node could be on different location in adjancy matrix.
