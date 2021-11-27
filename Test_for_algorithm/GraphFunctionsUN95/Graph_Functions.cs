@@ -317,12 +317,12 @@ namespace GraphFunctions95
             t2_b[i1] = a1.Get_Marker(L1.ToArray());
         }
 
-        private static int Get_New_Marker_For_Single_NodeV2(Mark_Int_List a1, uint[] v_b,  int[] t1_b)
+        private static int Get_New_Marker_For_Single_NodeV2(Mark_Int_List a1, uint[] neigburs,  int[] markers)
         {
             List<int> L1 = new List<int>();
-            for (int i1 = 0; i1 < v_b.Length; i1++)
+            for (int i1 = 0; i1 < neigburs.Length; i1++)
             {
-                L1.Add(t1_b[v_b[i1]]);
+                L1.Add(markers[neigburs[i1]]);
             }
             L1.Sort();
             return a1.Get_Marker(L1.ToArray());
@@ -339,88 +339,90 @@ namespace GraphFunctions95
             Array.Sort(copied_markers, indexes);
             return Rearange_Matrix_According_To_Indexes(adjancy_matrix, indexes);
         }
-        public static bool Graph_Isomorphism(uint[][] v_b1, uint[][] v_b2)
+        public static bool Graph_Isomorphism(uint[][] adjancy_matrix_A, uint[][] adjancy_matrinx_B)
         {
-            if (v_b1.Length != v_b2.Length)
+            if (adjancy_matrix_A.Length != adjancy_matrinx_B.Length)
             {
                 return false;
             }
-            int[] t1_b1;
-            int[] t2_b1 = null;
-            t1_b1 = Get_Primary_Markers(v_b1);
-            int[] t1_b2;
-            int[] t2_b2 = null;
-            t1_b2 = Get_Primary_Markers(v_b2);
+            int[] current_markers_A;
+            int[] next_markers_A = null;
+            current_markers_A = Get_Primary_Markers(adjancy_matrix_A);
+            int[] current_markers_B;
+            int[] next_markers_B = null;
+            current_markers_B = Get_Primary_Markers(adjancy_matrinx_B);
             int[] p1;
             int[] p2;
             Mark_Int_List G2 = new Mark_Int_List();
             int i2;
             int r1, r2;
-            bool t1 = true;
-            for (r1 = 0; r1 < t1_b1.Length; r1++)
+            bool should_break = true;
+            for (r1 = 0; r1 < current_markers_A.Length; r1++)
             {
-                for (r2 = 0; r2 < t1_b1.Length; r2++)
+                for (r2 = 0; r2 < current_markers_A.Length; r2++)
                 {
-                    p1 = t1_b1.ToArray();
-                    p2 = t1_b2.ToArray();
+                    p1 = current_markers_A.ToArray();
+                    p2 = current_markers_B.ToArray();
                     Array.Sort(p1);
                     Array.Sort(p2);
                     if (!p1.SequenceEqual(p2))
                     {
                         return false;
                     }
-                    t1 = true;
+                    should_break = true;
                     for (i2 = 1; i2 < p1.Length; i2++)
                     {
                         if (p1[i2] == p1[i2 - 1])
                         {
-                            t1 = false;
+                            should_break = false;
                             break;
                         }
                     }
-                    if (t1)
+                    if (should_break)
                     {
                         break;
                     }
-                    t1 = true;
+                    should_break = true;
                     for (i2 = 1; i2 < p1.Length; i2++)
                     {
                         if (p2[i2] == p2[i2 - 1])
                         {
-                            t1 = false;
+                            should_break = false;
                             break;
                         }
                     }
-                    if (t1)
+                    if (should_break)
                     {
                         break;
                     }
-                    t2_b1 = new int[t1_b1.Length];
-                    t2_b2 = new int[t1_b2.Length];
                     G2.Clear();
-                    Get_New_Marker_For_Each_Node(G2, v_b1, t1_b1, t2_b1);
-                    Get_New_Marker_For_Each_Node(G2, v_b2, t1_b2, t2_b2);
-                    if (t1_b1.SequenceEqual(t2_b1))
+                    next_markers_A= Get_New_Marker_For_Each_NodeV2(G2, adjancy_matrix_A, current_markers_A);
+                    next_markers_B = Get_New_Marker_For_Each_NodeV2(G2, adjancy_matrinx_B, current_markers_B);
+
+                    next_markers_A= Replace_Markers_With_Indexes(G2.Get_All_Marker_Maping().ToArray(), next_markers_A);
+                    next_markers_B= Replace_Markers_With_Indexes(G2.Get_All_Marker_Maping().ToArray(), next_markers_B);
+
+                    if (current_markers_A.SequenceEqual(next_markers_A))
                     {
                         break;
                     }
-                    if (t1_b2.SequenceEqual(t2_b2))
+                    if (current_markers_B.SequenceEqual(next_markers_B))
                     {
                         break;
                     }
-                    t1_b1 = t2_b1;
-                    t1_b2 = t2_b2;
+                    current_markers_A = next_markers_A;
+                    current_markers_B = next_markers_B;
                 }
-                if (t1)
+                if (should_break)
                 {
                     break;
                 }
-                int t4 = Find_Lowest_Duplicate(t1_b1);
-                Change_Marker(t4, t1_b1);
-                Change_Marker(t4, t1_b2);
+                int lowest_duplicate = Find_Lowest_Duplicate(current_markers_A);
+                Change_Marker(lowest_duplicate, current_markers_A);
+                Change_Marker(lowest_duplicate, current_markers_B);
             }
-            bool[,] k1 = Rearange_Matrix_According_To_Markers(To_Adjancy_Matrix_From_Adjency_Lists(v_b1), t1_b1);
-            bool[,] k2 = Rearange_Matrix_According_To_Markers(To_Adjancy_Matrix_From_Adjency_Lists(v_b2), t1_b2);
+            bool[,] k1 = Rearange_Matrix_According_To_Markers(To_Adjancy_Matrix_From_Adjency_Lists(adjancy_matrix_A), current_markers_A);
+            bool[,] k2 = Rearange_Matrix_According_To_Markers(To_Adjancy_Matrix_From_Adjency_Lists(adjancy_matrinx_B), current_markers_B);
             return Are_Identical_Matrixes(k1, k2);
         }
         public static bool Is_Square_Matrix(bool[,] k1)
@@ -474,12 +476,13 @@ namespace GraphFunctions95
                     return current_markers;
                 }
                 G2.Clear();
-                current_markers = Get_New_Marker_For_Each_NodeV2(G2, adjancy_list, current_markers);
-                if (markers.SequenceEqual(current_markers))
+                int[] next_preliminary_markers = Get_New_Marker_For_Each_NodeV2(G2, adjancy_list, current_markers);
+                int[] next_secondary_markers = Replace_Markers_With_Indexes(G2.Get_All_Marker_Maping().ToArray(), next_preliminary_markers);
+                if (current_markers.SequenceEqual(next_secondary_markers))
                 {
                     return current_markers;
                 }
-                markers = Replace_Markers_With_Indexes(G2.Get_All_Marker_Maping().ToArray(), current_markers);
+                current_markers = next_secondary_markers;
             }
             return current_markers;
         }
@@ -521,14 +524,14 @@ namespace GraphFunctions95
             }
         }
 
-        private static int[] Get_New_Marker_For_Each_NodeV2(Mark_Int_List G2, uint[][] v_b1, int[] t1_b1)
+        private static int[] Get_New_Marker_For_Each_NodeV2(Mark_Int_List G2, uint[][] adjancy_list, int[] markers)
         {
-            int[] t2_b1 = new int[t1_b1.Length];
-            for (int i1 = 0; i1 < t1_b1.GetLength(0); i1++)
+            int[] new_markers = new int[markers.Length];
+            for (int i1 = 0; i1 < markers.GetLength(0); i1++)
             {
-                t2_b1[i1]= Get_New_Marker_For_Single_NodeV2(G2, v_b1[i1],  t1_b1);
+                new_markers[i1]= Get_New_Marker_For_Single_NodeV2(G2, adjancy_list[i1],  markers);
             }
-            return t2_b1;
+            return new_markers;
         }
         private static void Change_Marker(int t4, int[] t1_b1)
         {
