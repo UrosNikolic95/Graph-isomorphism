@@ -94,7 +94,7 @@ namespace GraphFunctions95
             array3D[3] = Count_Neighburs_With_Greater_Distances_From_Each_Node(array3D[0], adjancy_lists);
             return array3D;
         }
-        private static int[] Get_Node_Markers(uint[][] adjancy_lists)
+        private static int[] Get_Primary_Markers(uint[][] adjancy_lists)
         {
             int[][][] array3D = Create_3D_Array(adjancy_lists);
             int[,] array2D = From_3D_Array_To_2D_Array(array3D);
@@ -327,17 +327,17 @@ namespace GraphFunctions95
             L1.Sort();
             return a1.Get_Marker(L1.ToArray());
         }
-        private static bool[,] Rearange_Matrix_According_To_Markers(bool[,] b, int[] t1_b)
+        private static bool[,] Rearange_Matrix_According_To_Markers(bool[,] adjancy_matrix, int[] markers)
         {
-            int[] g1 = t1_b.ToArray();
-            int[] a1 = new int[g1.Length];
+            int[] copied_markers = markers.ToArray();
+            int[] indexes = new int[copied_markers.Length];
             int i1;
-            for (i1 = 0; i1 < g1.Length; i1++)
+            for (i1 = 0; i1 < copied_markers.Length; i1++)
             {
-                a1[i1] = i1;
+                indexes[i1] = i1;
             }
-            Array.Sort(g1, a1);
-            return Rearange_Matrix_According_To_Indexes(b, a1);
+            Array.Sort(copied_markers, indexes);
+            return Rearange_Matrix_According_To_Indexes(adjancy_matrix, indexes);
         }
         public static bool Graph_Isomorphism(uint[][] v_b1, uint[][] v_b2)
         {
@@ -347,10 +347,10 @@ namespace GraphFunctions95
             }
             int[] t1_b1;
             int[] t2_b1 = null;
-            t1_b1 = Get_Node_Markers(v_b1);
+            t1_b1 = Get_Primary_Markers(v_b1);
             int[] t1_b2;
             int[] t2_b2 = null;
-            t1_b2 = Get_Node_Markers(v_b2);
+            t1_b2 = Get_Primary_Markers(v_b2);
             int[] p1;
             int[] p2;
             Mark_Int_List G2 = new Mark_Int_List();
@@ -450,56 +450,68 @@ namespace GraphFunctions95
             }
             return true;
         }
-        public static bool[,] Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(bool[,] b1)
+
+        public static bool All_Diferent(int[] current_markers)
         {
-            if (b1.GetLength(0) != b1.GetLength(1))
+            int[] copied_markers = current_markers.ToArray();
+            Array.Sort(copied_markers);
+            for (int i1 = 1; i1 < copied_markers.Length; i1++)
+            {
+                if (copied_markers[i1] == copied_markers[i1 - 1])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public static int[] Get_Next_Markers(uint[][] adjancy_list, int[] markers, Mark_Int_List G2)
+        {
+            int[] current_markers = markers;
+            for (int i1 = 0; i1 < adjancy_list.Length; i1++)
+            {
+                if (All_Diferent(current_markers))
+                {
+                    return current_markers;
+                }
+                G2.Clear();
+                current_markers = Get_New_Marker_For_Each_NodeV2(G2, adjancy_list, current_markers);
+                if (markers.SequenceEqual(current_markers))
+                {
+                    return current_markers;
+                }
+                markers = Replace_Markers_With_Indexes(G2.Get_All_Marker_Maping().ToArray(), current_markers);
+            }
+            return current_markers;
+        }
+
+        public static int[] Break_Symetry(uint[][] adjancy_list,int[] markers)
+        {
+            int[] current_markers = markers;
+            Mark_Int_List G2 = new Mark_Int_List();
+            for (int i1 = 0; i1 < adjancy_list.Length; i1++)
+            {
+                current_markers = Get_Next_Markers(adjancy_list, current_markers, G2);
+                int duplicate_marker = Find_Lowest_Duplicate(current_markers);
+                Change_Marker(duplicate_marker, current_markers);
+            }
+            return current_markers;
+        }
+
+        public static int[] Get_Complete_Markers(uint[][] adjancy_list) {
+            int[] primary_markers = Get_Primary_Markers(adjancy_list);
+            int[] secondary_markers = Break_Symetry(adjancy_list, primary_markers);
+            return secondary_markers;
+        }
+
+        public static bool[,] Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(bool[,] adjancy_matrix)
+        {
+            if (adjancy_matrix.GetLength(0) != adjancy_matrix.GetLength(1))
             {
                 return null;
             }
-            uint[][] v_b1 = To_Adjency_Lists_From_Adjency_Matrix(b1);
-            int[] t1_b1;
-            int[] t2_b1 = null;
-            t1_b1 = Get_Node_Markers(v_b1);
-            int[] p1;
-            Mark_Int_List G2 = new Mark_Int_List();
-            int i2;
-            int r1, r2;
-            bool t1 = true;
-            for (r1 = 0; r1 < 100; r1++)
-            {
-                for (r2 = 0; r2 < 5; r2++)
-                {
-                    p1 = t1_b1.ToArray();
-                    Array.Sort(p1);
-                    t1 = true;
-                    for (i2 = 1; i2 < p1.Length; i2++)
-                    {
-                        if (p1[i2] == p1[i2 - 1])
-                        {
-                            t1 = false;
-                            break;
-                        }
-                    }
-                    if (t1)
-                    {
-                        break;
-                    }
-                    G2.Clear();
-                    t2_b1 = Get_New_Marker_For_Each_NodeV2(G2, v_b1, t1_b1);
-                    if (t1_b1.SequenceEqual(t2_b1))
-                    {
-                        break;
-                    }
-                    t1_b1 = Replace_Markers_With_Indexes(G2.Get_All_Marker_Maping().ToArray(), t2_b1);
-                }
-                if (t1)
-                {
-                    break;
-                }
-                int t4 = Find_Lowest_Duplicate(t1_b1);
-                Change_Marker(t4, t1_b1);
-            }
-            return Rearange_Matrix_According_To_Markers(b1, t1_b1);
+            uint[][] adjancy_list = To_Adjency_Lists_From_Adjency_Matrix(adjancy_matrix);
+            int[] markers = Get_Complete_Markers(adjancy_list);
+            return Rearange_Matrix_According_To_Markers(adjancy_matrix, markers);
         }
         private static void Get_New_Marker_For_Each_Node(Mark_Int_List G2, uint[][] v_b1, int[] t1_b1, int[] t2_b1)
         {
