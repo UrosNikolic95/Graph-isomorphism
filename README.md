@@ -13,11 +13,11 @@ At this point we will have markings of nodes
 where every node has unique marking regardless
 whether nodes are symmetric.
 
-(3.Sort adjancy matrix according to markers and compare.)
+(3. Sort adjancy matrix according to markers and compare.)
 
 ## 1.Preliminary marking:
 
-1.1.Make 3D array 4\*n\*n
+1.1. Make 3D array 4\*n\*n
 
 1. layer is distances from each node to each node
 
@@ -29,10 +29,10 @@ whether nodes are symmetric.
 
 (layers might be in different order, but that doesn’t matter)
 
-1.2.Subtitute 4-tuplets in 3D array with single number (\*1)
+1.2. Subtitute 4-tuplets in 3D array with single number (\*1)
 As result we will get 2D array.
 
-(\*1)Substitution of tuplets
+(\*1) Substitution of tuplets
 
 1. Put all tuplets in list
 
@@ -55,10 +55,10 @@ This process must have following qualities:
 
 4. Diferent tuplets must have different markers.
 
-1.3.Sort each row.
+1.3. Sort each row.
 Depending on isomorphism, same node could be on different location in adjancy matrix.
 
-1.4.Substitute rows in 2D array with single number (\*1)
+1.4. Substitute rows in 2D array with single number (\*1)
 As result we will get 1D array.
 
 This 1D array represents preliminary markers.
@@ -89,5 +89,5 @@ For solving this problem is used step "Breaking symmetry"
 2.3.3. Repeat this process until reaches all nodes.
 Number of repetitions is equivalent with largest distance, which is at worst case n.
 
-2.2. Check whether has copies of the same marker, if it has repeat 2.1., if it doesn’t job is done.
+2.4. Check whether has copies of the same marker, if it has repeat 2.1., if it doesn’t job is done.
 Number of repetitions is less than number of nodes.
