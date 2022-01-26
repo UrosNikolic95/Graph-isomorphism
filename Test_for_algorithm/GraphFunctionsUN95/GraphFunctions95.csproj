@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="Graph_Functions.cs" />
     <Compile Include="Graph_Key_Dictionary.cs" />
-    <Compile Include="Mark_Nodes.cs" />
     <Compile Include="Mark_Graph.cs" />
     <Compile Include="Mark_Int_List.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

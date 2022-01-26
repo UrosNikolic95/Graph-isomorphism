@@ -184,7 +184,7 @@ namespace ClassLibrary1
         public static void Test_8()
         {
             Random r = new Random();
-            bool[,] Z1 = Class2.F1(5, 30);
+            bool[,] Z1 = Class2.F1(8, 20);
             bool[,] a1;
             bool[,] a2;
             bool[,] b1;
