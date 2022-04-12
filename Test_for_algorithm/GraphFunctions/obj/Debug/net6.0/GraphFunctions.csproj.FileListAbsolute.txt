@@ -10,3 +10,15 @@ C:\Users\43199\OneDrive\Desktop\Programing\CSharp\GraphFunctions\obj\Debug\net6.
 C:\Users\43199\OneDrive\Desktop\Programing\CSharp\GraphFunctions\obj\Debug\net6.0\GraphFunctions.dll
 C:\Users\43199\OneDrive\Desktop\Programing\CSharp\GraphFunctions\obj\Debug\net6.0\ref\GraphFunctions.dll
 C:\Users\43199\OneDrive\Desktop\Programing\CSharp\GraphFunctions\obj\Debug\net6.0\GraphFunctions.pdb
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions\bin\Debug\net6.0\GraphFunctions.deps.json
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions\bin\Debug\net6.0\GraphFunctions.dll
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions\bin\Debug\net6.0\ref\GraphFunctions.dll
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions\bin\Debug\net6.0\GraphFunctions.pdb
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions\obj\Debug\net6.0\GraphFunctions.csproj.AssemblyReference.cache
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions\obj\Debug\net6.0\GraphFunctions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions\obj\Debug\net6.0\GraphFunctions.AssemblyInfoInputs.cache
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions\obj\Debug\net6.0\GraphFunctions.AssemblyInfo.cs
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions\obj\Debug\net6.0\GraphFunctions.csproj.CoreCompileInputs.cache
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions\obj\Debug\net6.0\GraphFunctions.dll
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions\obj\Debug\net6.0\ref\GraphFunctions.dll
+C:\Users\43199\OneDrive\Desktop\Programing\GI\Test_for_algorithm\GraphFunctions\obj\Debug\net6.0\GraphFunctions.pdb
