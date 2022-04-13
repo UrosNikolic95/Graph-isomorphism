@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using Test_For_Algorithm;
+﻿using System.Diagnostics;
 using GraphFunctions;
+
 namespace ClassLibrary1
 {
     public class TestFunctions

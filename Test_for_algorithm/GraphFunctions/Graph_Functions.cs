@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -127,6 +128,7 @@ namespace GraphFunctions
         }
         private static int[] Get_Primary_Markers(uint[][] adjancy_lists)
         {
+            Stopwatch watch = new Stopwatch();
             int[][][] array3D = Create_3D_Array(adjancy_lists);
             int[,] array2D = From_3D_Array_To_2D_Array(array3D);
             int[] array1D = From_2D_Array_To_1D_Array(array2D);
