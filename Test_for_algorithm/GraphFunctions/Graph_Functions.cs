@@ -75,15 +75,45 @@ namespace GraphFunctions
             }
             return shortest_distances;
         }
+
+        static Task Chunked_Calculate_Distances_From_Each_Node(uint[][] adjancy_lists, int start, int end, int[][] result)
+        {
+            int last = Math.Min(end, adjancy_lists.Length);
+            return new Task(() =>
+            {
+                for (int i1 = start; i1 < last; i1++)
+                {
+                    result[i1] = Calculate_Distances_From_Node_BFS(adjancy_lists, i1);
+                }
+            });
+        }
+
+        static void WaitAllTasks(Task[] tasks)
+        {
+            for (int i1 = 0; i1 < tasks.Length; i1++)
+            {
+                tasks[i1].Wait();
+            }
+        }
+
+        static int calculate_batch_size(int total)
+        {
+            return (total / 10) + 1;
+        }
+
         static int[][] Calculate_Distances_From_Each_Node(uint[][] adjancy_lists)
         {
-            int[][] R1 = new int[adjancy_lists.GetLength(0)][];
-            int i1;
-            for (i1 = 0; i1 < R1.GetLength(0); i1++)
+            int batch_size = calculate_batch_size(adjancy_lists.Length);
+            int[][] result = new int[adjancy_lists.Length][];
+            List<Task> tasks = new List<Task>();
+            for (int i1 = 0; i1 < adjancy_lists.Length; i1 += batch_size)
             {
-                R1[i1] = Calculate_Distances_From_Node_BFS(adjancy_lists, i1);
+                Task task = Chunked_Calculate_Distances_From_Each_Node(adjancy_lists, i1, i1 + batch_size, result);
+                task.Start();
+                tasks.Add(task);
             }
-            return R1;
+            WaitAllTasks(tasks.ToArray());
+            return result;
         }
 
         private static int[][][] Create_3D_Array(uint[][] adjancy_lists)
@@ -155,15 +185,31 @@ namespace GraphFunctions
             }
             return R1;
         }
+
+        static Task Chunked_Count_Neighburs_With_Smaler_Distances_From_Each_Node(int[][] distances, uint[][] adjancy_lists, int start, int end, int[][] result)
+        {
+            int last = Math.Min(end, adjancy_lists.Length);
+            return new Task(() =>
+            {
+                for (int i1 = start; i1 < last; i1++)
+                {
+                    result[i1] = Count_Neighburs_With_Smaler_Distances_From_Single_Node(distances[i1], adjancy_lists);
+                }
+            });
+        }
         static int[][] Count_Neighburs_With_Smaler_Distances_From_Each_Node(int[][] distances, uint[][] adjancy_lists)
         {
-            int[][] R1 = new int[distances.Length][];
-            int i1;
-            for (i1 = 0; i1 < distances.Length; i1++)
+            int batch_size = calculate_batch_size(distances.Length);
+            int[][] result = new int[distances.Length][];
+            List<Task> tasks = new List<Task>();
+            for (int i1 = 0; i1 < distances.Length; i1 += batch_size)
             {
-                R1[i1] = Count_Neighburs_With_Smaler_Distances_From_Single_Node(distances[i1], adjancy_lists);
+                Task task = Chunked_Count_Neighburs_With_Smaler_Distances_From_Each_Node(distances, adjancy_lists, i1, i1 + batch_size, result);
+                task.Start();
+                tasks.Add(task);
             }
-            return R1;
+            WaitAllTasks(tasks.ToArray());
+            return result;
         }
         static int[] Count_Neighburs_With_Equal_Distances_From_Single_Node(int[] a1, uint[][] adjancy_lists)
         {
@@ -181,15 +227,32 @@ namespace GraphFunctions
             }
             return R1;
         }
+
+        static Task Chunk_Count_Neighburs_With_Equal_Distances_From_Single_Node(int[][] a1, uint[][] adjancy_lists, int start, int end, int[][] result)
+        {
+
+            int last = Math.Min(end, adjancy_lists.Length);
+            return new Task(() =>
+            {
+                for (int i1 = start; i1 < last; i1++)
+                {
+                    result[i1] = Count_Neighburs_With_Equal_Distances_From_Single_Node(a1[i1], adjancy_lists);
+                }
+            });
+        }
         static int[][] Count_Neighburs_With_Equal_Distances_From_Each_Node(int[][] a1, uint[][] adjancy_lists)
         {
-            int[][] R1 = new int[a1.Length][];
-            int i1;
-            for (i1 = 0; i1 < a1.Length; i1++)
+            int batch_size = calculate_batch_size(adjancy_lists.Length);
+            int[][] result = new int[adjancy_lists.Length][];
+            List<Task> tasks = new List<Task>();
+            for (int i1 = 0; i1 < a1.Length; i1 += batch_size)
             {
-                R1[i1] = Count_Neighburs_With_Equal_Distances_From_Single_Node(a1[i1], adjancy_lists);
+                Task task = Chunk_Count_Neighburs_With_Equal_Distances_From_Single_Node(a1, adjancy_lists, i1, i1 + batch_size, result);
+                task.Start();
+                tasks.Add(task);
             }
-            return R1;
+            WaitAllTasks(tasks.ToArray());
+            return result;
         }
         static int[] Count_Neighburs_With_Greater_Distances_From_Single_Node(int[] a1, uint[][] adjancy_lists)
         {

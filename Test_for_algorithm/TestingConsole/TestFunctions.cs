@@ -15,7 +15,7 @@ namespace ClassLibrary1
             Random r = new Random();
             Stopwatch t1 = new Stopwatch();
             bool[,] F_1_Adjancy_Matrix;
-            F_1_Adjancy_Matrix = Class2.F1(20, 20);
+            F_1_Adjancy_Matrix = Class2.F1(10, 100);
             bool[,] F_2_Adjancy_Matrix = Class2.Permute(F_1_Adjancy_Matrix, r);
             t1.Start();
             bool is_isomorphic = Graph_Functions.Graph_Isomorphism(

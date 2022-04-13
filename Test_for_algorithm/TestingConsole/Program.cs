@@ -35,7 +35,6 @@ namespace TestingConsole
             TestFunctions.Test_6();
             TestFunctions.Test_8();
             TestFunctions.Test_Graph_Key_Dictionary();
-            Console.ReadLine();
         }
     }
 }
