@@ -270,15 +270,32 @@ namespace GraphFunctions
             }
             return R1;
         }
+
+        static Task Chunked_Count_Neighburs_With_Greater_Distances_From_Single_Node(int[][] a1, uint[][] adjancy_lists, int start, int end, int[][] result)
+        {
+            int last = Math.Min(end, adjancy_lists.Length);
+            return new Task(() =>
+            {
+                for (int i1 = start; i1 < last; i1++)
+                {
+                    result[i1] = Count_Neighburs_With_Greater_Distances_From_Single_Node(a1[i1], adjancy_lists);
+                }
+            });
+        }
+
         static int[][] Count_Neighburs_With_Greater_Distances_From_Each_Node(int[][] a1, uint[][] adjancy_lists)
         {
-            int[][] R1 = new int[a1.Length][];
-            int i1;
-            for (i1 = 0; i1 < a1.Length; i1++)
+            int batch_size = calculate_batch_size(adjancy_lists.Length);
+            int[][] result = new int[a1.Length][];
+            List<Task> tasks = new List<Task>();
+            for (int i1 = 0; i1 < a1.Length; i1 += batch_size)
             {
-                R1[i1] = Count_Neighburs_With_Greater_Distances_From_Single_Node(a1[i1], adjancy_lists);
+                Task task = Chunked_Count_Neighburs_With_Greater_Distances_From_Single_Node(a1, adjancy_lists, i1, i1 + batch_size, result);
+                task.Start();
+                tasks.Add(task);
             }
-            return R1;
+            WaitAllTasks(tasks.ToArray());
+            return result;
         }
         public static uint[][] To_Adjency_Lists_From_Adjency_Matrix(bool[,] adjency_matrix)
         {
