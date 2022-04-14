@@ -585,14 +585,54 @@ namespace GraphFunctions
             return secondary_markers;
         }
 
-        public static bool[,] Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(bool[,] adjancy_matrix)
+        public static int[] Get_Complete_Markers_V2(int[][] adjancy_list)
+        {
+            int[] primary_markers = Get_Primary_Markers(adjancy_list);
+            int[] secondary_markers = Break_Symetry_V2(adjancy_list, primary_markers);
+            return secondary_markers;
+        }
+
+        public static bool[,]? Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(bool[,] adjancy_matrix)
+        {
+            if (adjancy_matrix.GetLength(0) != adjancy_matrix.GetLength(1))
+            {
+                throw new Exception("Adjancy matrix not square.");
+            }
+            int[][] adjancy_list = To_Adjency_Lists_From_Adjency_Matrix(adjancy_matrix);
+            int[] markers = Get_Complete_Markers(adjancy_list);
+            return Rearange_Matrix_According_To_Markers(adjancy_matrix, markers);
+        }
+
+        public static bool isSquare(bool[,] A)
+        {
+            return A.GetLength(0) != A.GetLength(1);
+        }
+        public static bool Compare_Matrices(bool[,] A, bool[,] B)
+        {
+            if (isSquare(A)) throw new Exception("A is not square matrix;");
+            if (isSquare(B)) throw new Exception("B is not square matrix;");
+            if (A.GetLength(0) != B.GetLength(0)) return false;
+            for (int i1 = 0; i1 < A.GetLength(0); i1++)
+            {
+                for (int i2 = 0; i2 < A.GetLength(1); i2++)
+                {
+                    if (A[i1, i2] != B[i1, i2])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public static bool[,]? Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism_V2(bool[,] adjancy_matrix)
         {
             if (adjancy_matrix.GetLength(0) != adjancy_matrix.GetLength(1))
             {
                 return null;
             }
             int[][] adjancy_list = To_Adjency_Lists_From_Adjency_Matrix(adjancy_matrix);
-            int[] markers = Get_Complete_Markers(adjancy_list);
+            int[] markers = Get_Complete_Markers_V2(adjancy_list);
             return Rearange_Matrix_According_To_Markers(adjancy_matrix, markers);
         }
         private static void Get_New_Marker_For_Each_Node(Mark_Int_List G2, int[][] v_b1, int[] t1_b1, int[] t2_b1)
@@ -753,19 +793,35 @@ namespace GraphFunctions
         }
 
 
-        // public static int[] Break_Symetry_V2(int[][] adjancy_list, int[] markers)
-        // {
-        //     HashSet<int> visited = new HashSet<int>();
-        //     List<int> next_layer = new List<int>();
 
-        //     for (int i1 = 0; i1 < adjancy_list.Length; i1++)
-        //     {
+        public static int[] Break_Symetry_V2(int[][] adjancy_list, int[] markers)
+        {
+            int[] current_markers = markers;
+            for (int i1 = 0; i1 < adjancy_list.Length; i1++)
+            {
+                if (Are_All_Diferent(current_markers))
+                {
+                    return current_markers;
+                }
+                current_markers = Create_New_Markers(adjancy_list, current_markers);
+            }
+            return current_markers;
+        }
 
+        public static bool Are_All_Diferent(int[] arr)
+        {
+            int[] copy = arr.ToArray();
+            Array.Sort(copy);
+            for (int i1 = 1; i1 < copy.Length; i1++)
+            {
+                if (copy[i1 - 1] == copy[i1])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
-        //     }
-
-        //     return
-        // }
         public static int[] Create_New_Markers(int[][] adjancy_list, int[] old_markers)
         {
             int duplicate = Find_Lowest_Duplicate(old_markers);
@@ -776,6 +832,7 @@ namespace GraphFunctions
             int[] next_layer = new int[] { index };
 
             int[] new_markers = new int[old_markers.Length];
+            new_markers[index] = old_markers.Max() + 1;
 
             Array_Dictionary marker_generator = new Array_Dictionary();
 
