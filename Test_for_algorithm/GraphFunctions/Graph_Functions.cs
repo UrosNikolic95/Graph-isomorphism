@@ -805,8 +805,6 @@ namespace GraphFunctions
             int[] current_markers = markers;
             for (int i1 = 0; i1 < adjancy_list.Length; i1++)
             {
-                Console.WriteLine(">>>>>>>>>>>>>i1  " + i1);
-                Console.WriteLine(">>>>>>>>>>>>>Count_Diferent  " + Count_Diferent(current_markers));
                 if (Are_All_Diferent(current_markers))
                 {
                     return current_markers;
@@ -867,8 +865,6 @@ namespace GraphFunctions
             int duplicate = Find_Lowest_Duplicate(old_markers);
             int index = Array.IndexOf(old_markers, duplicate);
 
-            Console.WriteLine(duplicate);
-            Console.WriteLine(old_markers.Count(val => val < 0));
 
 
             HashSet<int> taken = new HashSet<int>();
@@ -884,7 +880,6 @@ namespace GraphFunctions
 
             while (next_layer.Length != 0)
             {
-                Console.WriteLine("::::::while " + next_layer.Length + " " + is_in_previous_layers.Count);
                 int[] current_layer = next_layer;
                 next_layer = Take_Next_Layer(adjancy_list, current_layer, taken);
                 Get_New_Markers(adjancy_list, next_layer, old_markers, new_markers, is_in_previous_layers);
@@ -895,7 +890,7 @@ namespace GraphFunctions
 
         public static void Get_New_Markers(int[][] adjancy_list, int[] next_layer, int[] old_markers, int[] new_markers, HashSet<int> is_in_previous_layers)
         {
-            Mark_Int_List marker = new Mark_Int_List(old_markers.Max() + 1);
+            Mark_Int_List marker = new Mark_Int_List();
             for (int i1 = 0; i1 < next_layer.Length; i1++)
             {
                 int current_node = next_layer[i1];
@@ -922,6 +917,7 @@ namespace GraphFunctions
         //Replace_Markers_With_Indexes
         public static void Partial_Replace_Markers_With_Indexes(int[] next_layer, int[] new_markers, Mark_Int_List marker)
         {
+            int max = new_markers.Max();
             int[] markers = marker.Get_All_Marker_Maping();
             Dictionary<int, int> dic = new Dictionary<int, int>();
             for (int i1 = 0; i1 < markers.Length; i1++)
@@ -931,7 +927,7 @@ namespace GraphFunctions
             for (int i1 = 0; i1 < next_layer.Length; i1++)
             {
                 int current_node = next_layer[i1];
-                new_markers[current_node] = dic[new_markers[current_node]];
+                new_markers[current_node] = dic[new_markers[current_node]] + max;
             }
         }
 
