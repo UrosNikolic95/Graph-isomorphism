@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 namespace GraphFunctions
 {
     public class Graph_Functions
@@ -45,7 +40,7 @@ namespace GraphFunctions
             }
             return array1D;
         }
-        private static int[] Calculate_Distances_From_Node_BFS(uint[][] adjancy_lists, int index_of_starting_node)
+        private static int[] Calculate_Distances_From_Node_BFS(int[][] adjancy_lists, int index_of_starting_node)
         {
             List<int> L1 = new List<int>();
             List<int> L2 = new List<int>();
@@ -77,7 +72,7 @@ namespace GraphFunctions
             return shortest_distances;
         }
 
-        static Task Chunked_Calculate_Distances_From_Each_Node(uint[][] adjancy_lists, int start, int end, int[][] result)
+        static Task Chunked_Calculate_Distances_From_Each_Node(int[][] adjancy_lists, int start, int end, int[][] result)
         {
             int last = Math.Min(end, adjancy_lists.Length);
             return new Task(() =>
@@ -102,7 +97,7 @@ namespace GraphFunctions
             return (total / 10) + 1;
         }
 
-        static int[][] Calculate_Distances_From_Each_Node(uint[][] adjancy_lists)
+        static int[][] Calculate_Distances_From_Each_Node(int[][] adjancy_lists)
         {
             int batch_size = calculate_batch_size(adjancy_lists.Length);
             int[][] result = new int[adjancy_lists.Length][];
@@ -117,7 +112,7 @@ namespace GraphFunctions
             return result;
         }
 
-        private static int[][][] Create_3D_Array(uint[][] adjancy_lists)
+        private static int[][][] Create_3D_Array(int[][] adjancy_lists)
         {
             int[][][] array3D = new int[4][][];
             array3D[0] = Calculate_Distances_From_Each_Node(adjancy_lists);
@@ -126,7 +121,7 @@ namespace GraphFunctions
             array3D[3] = Count_Neighburs_With_Greater_Distances_From_Each_Node(array3D[0], adjancy_lists);
             return array3D;
         }
-        private static int[] Get_Primary_Markers(uint[][] adjancy_lists)
+        private static int[] Get_Primary_Markers(int[][] adjancy_lists)
         {
             Stopwatch watch = new Stopwatch();
             int[][][] array3D = Create_3D_Array(adjancy_lists);
@@ -171,7 +166,7 @@ namespace GraphFunctions
             }
             return Replace_Markers_With_Indexes(mark_int_list.Get_All_Marker_Maping(), array1D);
         }
-        static int[] Count_Neighburs_With_Smaler_Distances_From_Single_Node(int[] distances, uint[][] adjancy_lists)
+        static int[] Count_Neighburs_With_Smaler_Distances_From_Single_Node(int[] distances, int[][] adjancy_lists)
         {
             int[] R1 = new int[distances.Length];
             int i1, i2;
@@ -188,7 +183,7 @@ namespace GraphFunctions
             return R1;
         }
 
-        static Task Chunked_Count_Neighburs_With_Smaler_Distances_From_Each_Node(int[][] distances, uint[][] adjancy_lists, int start, int end, int[][] result)
+        static Task Chunked_Count_Neighburs_With_Smaler_Distances_From_Each_Node(int[][] distances, int[][] adjancy_lists, int start, int end, int[][] result)
         {
             int last = Math.Min(end, adjancy_lists.Length);
             return new Task(() =>
@@ -199,7 +194,7 @@ namespace GraphFunctions
                 }
             });
         }
-        static int[][] Count_Neighburs_With_Smaler_Distances_From_Each_Node(int[][] distances, uint[][] adjancy_lists)
+        static int[][] Count_Neighburs_With_Smaler_Distances_From_Each_Node(int[][] distances, int[][] adjancy_lists)
         {
             int batch_size = calculate_batch_size(distances.Length);
             int[][] result = new int[distances.Length][];
@@ -213,7 +208,7 @@ namespace GraphFunctions
             WaitAllTasks(tasks.ToArray());
             return result;
         }
-        static int[] Count_Neighburs_With_Equal_Distances_From_Single_Node(int[] a1, uint[][] adjancy_lists)
+        static int[] Count_Neighburs_With_Equal_Distances_From_Single_Node(int[] a1, int[][] adjancy_lists)
         {
             int[] R1 = new int[a1.Length];
             int i1, i2;
@@ -230,7 +225,7 @@ namespace GraphFunctions
             return R1;
         }
 
-        static Task Chunk_Count_Neighburs_With_Equal_Distances_From_Single_Node(int[][] a1, uint[][] adjancy_lists, int start, int end, int[][] result)
+        static Task Chunk_Count_Neighburs_With_Equal_Distances_From_Single_Node(int[][] a1, int[][] adjancy_lists, int start, int end, int[][] result)
         {
 
             int last = Math.Min(end, adjancy_lists.Length);
@@ -242,7 +237,7 @@ namespace GraphFunctions
                 }
             });
         }
-        static int[][] Count_Neighburs_With_Equal_Distances_From_Each_Node(int[][] a1, uint[][] adjancy_lists)
+        static int[][] Count_Neighburs_With_Equal_Distances_From_Each_Node(int[][] a1, int[][] adjancy_lists)
         {
             int batch_size = calculate_batch_size(adjancy_lists.Length);
             int[][] result = new int[adjancy_lists.Length][];
@@ -256,7 +251,7 @@ namespace GraphFunctions
             WaitAllTasks(tasks.ToArray());
             return result;
         }
-        static int[] Count_Neighburs_With_Greater_Distances_From_Single_Node(int[] a1, uint[][] adjancy_lists)
+        static int[] Count_Neighburs_With_Greater_Distances_From_Single_Node(int[] a1, int[][] adjancy_lists)
         {
             int[] R1 = new int[a1.Length];
             int i1, i2;
@@ -273,7 +268,7 @@ namespace GraphFunctions
             return R1;
         }
 
-        static Task Chunked_Count_Neighburs_With_Greater_Distances_From_Single_Node(int[][] a1, uint[][] adjancy_lists, int start, int end, int[][] result)
+        static Task Chunked_Count_Neighburs_With_Greater_Distances_From_Single_Node(int[][] a1, int[][] adjancy_lists, int start, int end, int[][] result)
         {
             int last = Math.Min(end, adjancy_lists.Length);
             return new Task(() =>
@@ -285,7 +280,7 @@ namespace GraphFunctions
             });
         }
 
-        static int[][] Count_Neighburs_With_Greater_Distances_From_Each_Node(int[][] a1, uint[][] adjancy_lists)
+        static int[][] Count_Neighburs_With_Greater_Distances_From_Each_Node(int[][] a1, int[][] adjancy_lists)
         {
             int batch_size = calculate_batch_size(adjancy_lists.Length);
             int[][] result = new int[a1.Length][];
@@ -299,13 +294,13 @@ namespace GraphFunctions
             WaitAllTasks(tasks.ToArray());
             return result;
         }
-        public static uint[][] To_Adjency_Lists_From_Adjency_Matrix(bool[,] adjency_matrix)
+        public static int[][] To_Adjency_Lists_From_Adjency_Matrix(bool[,] adjency_matrix)
         {
-            uint[][] adjancy_lists = new uint[adjency_matrix.GetLength(0)][];
-            uint i1, i2;
+            int[][] adjancy_lists = new int[adjency_matrix.GetLength(0)][];
+            int i1, i2;
             for (i1 = 0; i1 < adjency_matrix.GetLength(0); i1++)
             {
-                List<uint> L1 = new List<uint>();
+                List<int> L1 = new List<int>();
                 for (i2 = 0; i2 < adjency_matrix.GetLength(1); i2++)
                 {
                     if (adjency_matrix[i1, i2])
@@ -317,7 +312,7 @@ namespace GraphFunctions
             }
             return adjancy_lists;
         }
-        public static bool[,] To_Adjancy_Matrix_From_Adjency_Lists(uint[][] adjancy_lists)
+        public static bool[,] To_Adjancy_Matrix_From_Adjency_Lists(int[][] adjancy_lists)
         {
             bool[,] adjancy_matrix = new bool[adjancy_lists.Length, adjancy_lists.Length];
             int i1, i2;
@@ -388,7 +383,7 @@ namespace GraphFunctions
             }
             return b2;
         }
-        private static void Get_New_Marker_For_Single_Node(Mark_Int_List a1, uint[][] v_b, int i1, int[] t1_b, int[] t2_b)
+        private static void Get_New_Marker_For_Single_Node(Mark_Int_List a1, int[][] v_b, int i1, int[] t1_b, int[] t2_b)
         {
             int i2;
             List<int> L1 = new List<int>();
@@ -400,7 +395,7 @@ namespace GraphFunctions
             t2_b[i1] = a1.Get_Marker(L1.ToArray());
         }
 
-        private static int Get_New_Marker_For_Single_NodeV2(Mark_Int_List a1, uint[] neigburs, int[] markers)
+        private static int Get_New_Marker_For_Single_NodeV2(Mark_Int_List a1, int[] neigburs, int[] markers)
         {
             List<int> L1 = new List<int>();
             for (int i1 = 0; i1 < neigburs.Length; i1++)
@@ -422,7 +417,7 @@ namespace GraphFunctions
             Array.Sort(copied_markers, indexes);
             return Rearange_Matrix_According_To_Indexes(adjancy_matrix, indexes);
         }
-        public static bool Graph_Isomorphism(uint[][] adjancy_matrix_A, uint[][] adjancy_matrinx_B)
+        public static bool Graph_Isomorphism(int[][] adjancy_matrix_A, int[][] adjancy_matrinx_B)
         {
             if (adjancy_matrix_A.Length != adjancy_matrinx_B.Length)
             {
@@ -549,7 +544,7 @@ namespace GraphFunctions
             }
             return true;
         }
-        public static int[] Get_Next_Markers(uint[][] adjancy_list, int[] markers, Mark_Int_List G2)
+        public static int[] Get_Next_Markers(int[][] adjancy_list, int[] markers, Mark_Int_List G2)
         {
             int[] current_markers = markers;
             for (int i1 = 0; i1 < adjancy_list.Length; i1++)
@@ -570,7 +565,7 @@ namespace GraphFunctions
             return current_markers;
         }
 
-        public static int[] Break_Symetry(uint[][] adjancy_list, int[] markers)
+        public static int[] Break_Symetry(int[][] adjancy_list, int[] markers)
         {
             int[] current_markers = markers;
             Mark_Int_List G2 = new Mark_Int_List();
@@ -583,7 +578,7 @@ namespace GraphFunctions
             return current_markers;
         }
 
-        public static int[] Get_Complete_Markers(uint[][] adjancy_list)
+        public static int[] Get_Complete_Markers(int[][] adjancy_list)
         {
             int[] primary_markers = Get_Primary_Markers(adjancy_list);
             int[] secondary_markers = Break_Symetry(adjancy_list, primary_markers);
@@ -596,11 +591,11 @@ namespace GraphFunctions
             {
                 return null;
             }
-            uint[][] adjancy_list = To_Adjency_Lists_From_Adjency_Matrix(adjancy_matrix);
+            int[][] adjancy_list = To_Adjency_Lists_From_Adjency_Matrix(adjancy_matrix);
             int[] markers = Get_Complete_Markers(adjancy_list);
             return Rearange_Matrix_According_To_Markers(adjancy_matrix, markers);
         }
-        private static void Get_New_Marker_For_Each_Node(Mark_Int_List G2, uint[][] v_b1, int[] t1_b1, int[] t2_b1)
+        private static void Get_New_Marker_For_Each_Node(Mark_Int_List G2, int[][] v_b1, int[] t1_b1, int[] t2_b1)
         {
             for (int i1 = 0; i1 < t1_b1.GetLength(0); i1++)
             {
@@ -608,7 +603,7 @@ namespace GraphFunctions
             }
         }
 
-        private static int[] Get_New_Marker_For_Each_NodeV2(Mark_Int_List G2, uint[][] adjancy_list, int[] markers)
+        private static int[] Get_New_Marker_For_Each_NodeV2(Mark_Int_List G2, int[][] adjancy_list, int[] markers)
         {
             int[] new_markers = new int[markers.Length];
             for (int i1 = 0; i1 < markers.GetLength(0); i1++)
@@ -756,5 +751,92 @@ namespace GraphFunctions
             }
             return B1;
         }
+
+
+        // public static int[] Break_Symetry_V2(int[][] adjancy_list, int[] markers)
+        // {
+        //     HashSet<int> visited = new HashSet<int>();
+        //     List<int> next_layer = new List<int>();
+
+        //     for (int i1 = 0; i1 < adjancy_list.Length; i1++)
+        //     {
+
+
+        //     }
+
+        //     return
+        // }
+        public static int[] Create_New_Markers(int[][] adjancy_list, int[] old_markers)
+        {
+            int duplicate = Find_Lowest_Duplicate(old_markers);
+            int index = Array.IndexOf(old_markers, duplicate);
+
+            HashSet<int> done = new HashSet<int>();
+            done.Add(index);
+            int[] next_layer = new int[] { index };
+
+            int[] new_markers = new int[old_markers.Length];
+
+            Array_Dictionary marker_generator = new Array_Dictionary();
+
+            while (next_layer.Length != 0)
+            {
+                int[] current_layer = next_layer;
+                next_layer = Take_Next_Layer(adjancy_list, current_layer, done);
+                Create_New_Markers(adjancy_list, next_layer, old_markers, new_markers, done, marker_generator);
+                Mark_Done(current_layer, done);
+            }
+            return new_markers;
+        }
+
+        public static void Create_New_Markers(int[][] adjancy_list, int[] next_layer, int[] old_markers, int[] new_markers, HashSet<int> done, Array_Dictionary marker_generator)
+        {
+            for (int i1 = 0; i1 < next_layer.Length; i1++)
+            {
+                int current_node = next_layer[i1];
+                List<int> neigburs_markers = new List<int>();
+                for (int i2 = 0; i2 < adjancy_list[current_node].Length; i2++)
+                {
+                    int neighbur = adjancy_list[current_node][i2];
+                    if (done.Contains(neighbur))
+                    {
+                        neigburs_markers.Add(new_markers[neighbur]);
+                    }
+                    else
+                    {
+                        neigburs_markers.Add(old_markers[neighbur]);
+                    }
+                }
+                new_markers[current_node] = marker_generator.getMarker(neigburs_markers.ToArray());
+            }
+        }
+
+        public static int[] Take_Next_Layer(int[][] adjancy_list, int[] current, HashSet<int> done)
+        {
+            List<int> preliminary = new List<int>();
+            for (int i1 = 0; i1 < current.Length; i1++)
+            {
+                int current_node = current[i1];
+                for (int i2 = 0; i2 < adjancy_list[current_node].Length; i2++)
+                {
+                    if (!done.Contains(adjancy_list[current_node][i2]))
+                    {
+                        preliminary.Add(adjancy_list[current_node][i2]);
+                    }
+                }
+            }
+            return preliminary.ToArray();
+        }
+
+        public static void Mark_Done(int[] current, HashSet<int> done)
+        {
+            for (int i1 = 0; i1 < current.Length; i1++)
+            {
+                done.Add(current[i1]);
+            }
+        }
     }
+
+
+
 }

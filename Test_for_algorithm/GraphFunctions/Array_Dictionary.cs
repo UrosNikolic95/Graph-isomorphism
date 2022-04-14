@@ -10,7 +10,7 @@ namespace GraphFunctions
     {
         private Dictionary<int[], int> dic = new Dictionary<int[], int>(new ArrComp());
         int counter = 0;
-        int getMarker(int[] arr)
+        public int getMarker(int[] arr)
         {
             if (!dic.ContainsKey(arr))
             {

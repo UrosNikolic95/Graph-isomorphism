@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-namespace GraphFunctions
+﻿namespace GraphFunctions
 {
     public class Graph_Key_Dictionary<Type>
     {
@@ -73,7 +67,7 @@ namespace GraphFunctions
             return dictionary.Remove(Graph_Functions.Transform_Bool_Matrix_To_Int_Array(
                          Graph_Functions.Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(key)));
         }
-        public bool TryGetValue(bool[,] key, out Type value)
+        public bool TryGetValue(bool[,] key, out Type? value)
         {
             return dictionary.TryGetValue(
                 Graph_Functions.Transform_Bool_Matrix_To_Int_Array(
