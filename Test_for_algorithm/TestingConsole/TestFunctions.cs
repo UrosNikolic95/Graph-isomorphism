@@ -10,12 +10,12 @@ namespace ClassLibrary1
             Random r = new Random();
             Stopwatch t1 = new Stopwatch();
             bool[,] F_1_Adjancy_Matrix;
-            F_1_Adjancy_Matrix = Class2.F1(10, 100);
+            F_1_Adjancy_Matrix = Class2.F1(10, 10);
             bool[,] F_2_Adjancy_Matrix = Class2.Permute(F_1_Adjancy_Matrix, r);
             t1.Start();
-            bool is_isomorphic = Graph_Functions.Graph_Isomorphism(
-               Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_1_Adjancy_Matrix),
-               Graph_Functions.To_Adjency_Lists_From_Adjency_Matrix(F_2_Adjancy_Matrix));
+            bool is_isomorphic = Graph_Functions.Graph_Isomorphism_V2(
+               F_1_Adjancy_Matrix,
+               F_2_Adjancy_Matrix);
             long time = t1.ElapsedMilliseconds;
             Console.WriteLine(
                 "\n\nisomorphic samples"

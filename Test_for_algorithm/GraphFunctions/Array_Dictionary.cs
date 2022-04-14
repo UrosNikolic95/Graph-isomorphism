@@ -8,20 +8,52 @@ namespace GraphFunctions
 {
     public class Array_Dictionary
     {
-        private Dictionary<int[], int> dic = new Dictionary<int[], int>(new ArrComp());
+        public Array_Dictionary(int start_from)
+        {
+            counter = start_from;
+        }
+        private SortedList<int[], int> list = new SortedList<int[], int>(new ArrComp());
         int counter = 0;
         public int getMarker(int[] arr)
         {
-            if (!dic.ContainsKey(arr))
+            if (!list.ContainsKey(arr))
             {
-                dic[arr] = counter++;
+                list[arr] = counter++;
             }
-            return dic[arr];
+            return list[arr];
+        }
+
+        public int getIndex(int[] arr)
+        {
+            return list.IndexOfKey(arr);
         }
 
     }
 
-    class ArrComp : IEqualityComparer<int[]>
+    class ArrComp : IComparer<int[]>
+    {
+        public int Compare(int[]? x, int[]? y)
+        {
+            if (x?.Length > y?.Length) return 1;
+            if (x?.Length < y?.Length) return -1;
+            for (int i1 = 0; i1 < x?.Length; i1++)
+            {
+                if (x[i1] > y?[i1])
+                {
+                    return 1;
+                }
+                if (x[i1] < y?[i1])
+                {
+                    return -1;
+                }
+            }
+            return 0;
+        }
+
+
+    }
+
+    class ArrEqu : IEqualityComparer<int[]>
     {
         public bool Equals(int[]? x, int[]? y)
         {

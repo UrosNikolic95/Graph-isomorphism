@@ -8,11 +8,14 @@ namespace GraphFunctions
     public class Mark_Int_List
     {
         private int Mark_Counter;
-        private List<El> list_Of_Arrays;
+        private List<El> list_Of_Arrays = new List<El>();
         public Mark_Int_List()
         {
             Mark_Counter = 0;
-            list_Of_Arrays = new List<El>();
+        }
+        public Mark_Int_List(int start = 0)
+        {
+            Mark_Counter = start;
         }
         public void Clear()
         {

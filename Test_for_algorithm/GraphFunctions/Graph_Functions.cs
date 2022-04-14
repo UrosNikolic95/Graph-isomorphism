@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Text;
+
 namespace GraphFunctions
 {
     public class Graph_Functions
@@ -26,14 +28,13 @@ namespace GraphFunctions
         private static int[] Replace_Markers_With_Indexes(int[] marker_maping, int[] array1D)
         {
             Dictionary<int, int> D1 = new Dictionary<int, int>();
-            int i1;
-            for (i1 = 0; i1 < marker_maping.Length; i1++)
+            for (int i1 = 0; i1 < marker_maping.Length; i1++)
             {
                 D1.Add(marker_maping[i1], i1);
             }
             int[] c1 = new int[array1D.Length];
             int t1;
-            for (i1 = 0; i1 < array1D.Length; i1++)
+            for (int i1 = 0; i1 < array1D.Length; i1++)
             {
                 D1.TryGetValue(array1D[i1], out t1);
                 array1D[i1] = t1;
@@ -594,7 +595,7 @@ namespace GraphFunctions
 
         public static bool[,]? Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(bool[,] adjancy_matrix)
         {
-            if (adjancy_matrix.GetLength(0) != adjancy_matrix.GetLength(1))
+            if (!Is_Square_Matrix(adjancy_matrix))
             {
                 throw new Exception("Adjancy matrix not square.");
             }
@@ -603,14 +604,18 @@ namespace GraphFunctions
             return Rearange_Matrix_According_To_Markers(adjancy_matrix, markers);
         }
 
-        public static bool isSquare(bool[,] A)
+        public static bool Graph_Isomorphism_V2(bool[,] A, bool[,] B)
         {
-            return A.GetLength(0) != A.GetLength(1);
+            bool[,] standardized_A = Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism_V2(A);
+            bool[,] standardized_B = Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism_V2(B);
+            return Compare_Matrices(standardized_A, standardized_B);
         }
+
+
         public static bool Compare_Matrices(bool[,] A, bool[,] B)
         {
-            if (isSquare(A)) throw new Exception("A is not square matrix;");
-            if (isSquare(B)) throw new Exception("B is not square matrix;");
+            if (!Is_Square_Matrix(A)) throw new Exception("A is not square matrix;");
+            if (!Is_Square_Matrix(B)) throw new Exception("B is not square matrix;");
             if (A.GetLength(0) != B.GetLength(0)) return false;
             for (int i1 = 0; i1 < A.GetLength(0); i1++)
             {
@@ -625,11 +630,11 @@ namespace GraphFunctions
             return true;
         }
 
-        public static bool[,]? Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism_V2(bool[,] adjancy_matrix)
+        public static bool[,] Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism_V2(bool[,] adjancy_matrix)
         {
-            if (adjancy_matrix.GetLength(0) != adjancy_matrix.GetLength(1))
+            if (!Is_Square_Matrix(adjancy_matrix))
             {
-                return null;
+                throw new Exception("adjancy_matrix not square;");
             }
             int[][] adjancy_list = To_Adjency_Lists_From_Adjency_Matrix(adjancy_matrix);
             int[] markers = Get_Complete_Markers_V2(adjancy_list);
@@ -796,14 +801,17 @@ namespace GraphFunctions
 
         public static int[] Break_Symetry_V2(int[][] adjancy_list, int[] markers)
         {
+            int minus_counter = -1;
             int[] current_markers = markers;
             for (int i1 = 0; i1 < adjancy_list.Length; i1++)
             {
+                Console.WriteLine(">>>>>>>>>>>>>i1  " + i1);
+                Console.WriteLine(">>>>>>>>>>>>>Count_Diferent  " + Count_Diferent(current_markers));
                 if (Are_All_Diferent(current_markers))
                 {
                     return current_markers;
                 }
-                current_markers = Create_New_Markers(adjancy_list, current_markers);
+                current_markers = Create_New_Markers(adjancy_list, current_markers, ref minus_counter);
             }
             return current_markers;
         }
@@ -822,32 +830,72 @@ namespace GraphFunctions
             return true;
         }
 
-        public static int[] Create_New_Markers(int[][] adjancy_list, int[] old_markers)
+        public static int Count_Diferent(int[] arr)
+        {
+            int[] copy = arr.ToArray();
+            Array.Sort(copy);
+            int counter = 1;
+            for (int i1 = 1; i1 < copy.Length; i1++)
+            {
+                if (copy[i1 - 1] != copy[i1])
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+
+        public static int count_dif(int[] A, int[] B)
+        {
+            int counter = 0;
+            for (int i1 = 1; i1 < A.Length; i1++)
+            {
+                if (A[i1] != B[i1]) counter++;
+            }
+            return counter;
+        }
+        public static void print_arr(int[] arr)
+        {
+            for (int i1 = 0; i1 < arr.Length; i1++)
+            {
+                Console.Write(arr[i1] + " ");
+            }
+        }
+
+        public static int[] Create_New_Markers(int[][] adjancy_list, int[] old_markers, ref int minus_counter)
         {
             int duplicate = Find_Lowest_Duplicate(old_markers);
             int index = Array.IndexOf(old_markers, duplicate);
 
-            HashSet<int> done = new HashSet<int>();
-            done.Add(index);
+            Console.WriteLine(duplicate);
+            Console.WriteLine(old_markers.Count(val => val < 0));
+
+
+            HashSet<int> taken = new HashSet<int>();
+            taken.Add(index);
+
+            HashSet<int> is_in_previous_layers = new HashSet<int>();
+            is_in_previous_layers.Add(index);
             int[] next_layer = new int[] { index };
 
             int[] new_markers = new int[old_markers.Length];
-            new_markers[index] = old_markers.Max() + 1;
+            new_markers[index] = minus_counter--;
 
-            Array_Dictionary marker_generator = new Array_Dictionary();
 
             while (next_layer.Length != 0)
             {
+                Console.WriteLine("::::::while " + next_layer.Length + " " + is_in_previous_layers.Count);
                 int[] current_layer = next_layer;
-                next_layer = Take_Next_Layer(adjancy_list, current_layer, done);
-                Create_New_Markers(adjancy_list, next_layer, old_markers, new_markers, done, marker_generator);
-                Mark_Done(current_layer, done);
+                next_layer = Take_Next_Layer(adjancy_list, current_layer, taken);
+                Get_New_Markers(adjancy_list, next_layer, old_markers, new_markers, is_in_previous_layers);
+                Mark_Is_In_Prevoius_Layers(next_layer, is_in_previous_layers);
             }
             return new_markers;
         }
 
-        public static void Create_New_Markers(int[][] adjancy_list, int[] next_layer, int[] old_markers, int[] new_markers, HashSet<int> done, Array_Dictionary marker_generator)
+        public static void Get_New_Markers(int[][] adjancy_list, int[] next_layer, int[] old_markers, int[] new_markers, HashSet<int> is_in_previous_layers)
         {
+            Mark_Int_List marker = new Mark_Int_List(old_markers.Max() + 1);
             for (int i1 = 0; i1 < next_layer.Length; i1++)
             {
                 int current_node = next_layer[i1];
@@ -855,7 +903,7 @@ namespace GraphFunctions
                 for (int i2 = 0; i2 < adjancy_list[current_node].Length; i2++)
                 {
                     int neighbur = adjancy_list[current_node][i2];
-                    if (done.Contains(neighbur))
+                    if (is_in_previous_layers.Contains(neighbur))
                     {
                         neigburs_markers.Add(new_markers[neighbur]);
                     }
@@ -864,32 +912,53 @@ namespace GraphFunctions
                         neigburs_markers.Add(old_markers[neighbur]);
                     }
                 }
-                new_markers[current_node] = marker_generator.getMarker(neigburs_markers.ToArray());
+                int[] arr = neigburs_markers.ToArray();
+                Array.Sort(arr);
+                new_markers[current_node] = marker.Get_Marker(arr);
+            }
+            Partial_Replace_Markers_With_Indexes(next_layer, new_markers, marker);
+        }
+
+        //Replace_Markers_With_Indexes
+        public static void Partial_Replace_Markers_With_Indexes(int[] next_layer, int[] new_markers, Mark_Int_List marker)
+        {
+            int[] markers = marker.Get_All_Marker_Maping();
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+            for (int i1 = 0; i1 < markers.Length; i1++)
+            {
+                dic[markers[i1]] = i1;
+            }
+            for (int i1 = 0; i1 < next_layer.Length; i1++)
+            {
+                int current_node = next_layer[i1];
+                new_markers[current_node] = dic[new_markers[current_node]];
             }
         }
 
-        public static int[] Take_Next_Layer(int[][] adjancy_list, int[] current, HashSet<int> done)
+        public static int[] Take_Next_Layer(int[][] adjancy_list, int[] current_layer, HashSet<int> taken)
         {
             List<int> preliminary = new List<int>();
-            for (int i1 = 0; i1 < current.Length; i1++)
+            for (int i1 = 0; i1 < current_layer.Length; i1++)
             {
-                int current_node = current[i1];
+                int current_node = current_layer[i1];
                 for (int i2 = 0; i2 < adjancy_list[current_node].Length; i2++)
                 {
-                    if (!done.Contains(adjancy_list[current_node][i2]))
+                    int neighbur = adjancy_list[current_node][i2];
+                    if (!taken.Contains(neighbur))
                     {
-                        preliminary.Add(adjancy_list[current_node][i2]);
+                        taken.Add(neighbur);
+                        preliminary.Add(neighbur);
                     }
                 }
             }
             return preliminary.ToArray();
         }
 
-        public static void Mark_Done(int[] current, HashSet<int> done)
+        public static void Mark_Is_In_Prevoius_Layers(int[] current_layer, HashSet<int> got_new_markers)
         {
-            for (int i1 = 0; i1 < current.Length; i1++)
+            for (int i1 = 0; i1 < current_layer.Length; i1++)
             {
-                done.Add(current[i1]);
+                got_new_markers.Add(current_layer[i1]);
             }
         }
     }
