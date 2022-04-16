@@ -76,8 +76,10 @@
         }
         class Graph_Comparer : IEqualityComparer<int[]>
         {
-            public bool Equals(int[] x, int[] y)
+            public bool Equals(int[]? x, int[]? y)
             {
+                if (x == null) return false;
+                if (y == null) return false;
                 return x.SequenceEqual(y);
             }
             public int GetHashCode(int[] obj)

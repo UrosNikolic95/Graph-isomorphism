@@ -124,7 +124,7 @@ namespace GraphFunctions
     }
     public class El
     {
-        public int[] list;
+        public int[] list = new int[0];
         public int Mark;
     }
 }

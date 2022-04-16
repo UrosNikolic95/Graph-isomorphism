@@ -424,12 +424,10 @@ namespace GraphFunctions
             {
                 return false;
             }
-            int[] current_markers_A;
-            int[] next_markers_A = null;
-            current_markers_A = Get_Primary_Markers(adjancy_matrix_A);
-            int[] current_markers_B;
-            int[] next_markers_B = null;
-            current_markers_B = Get_Primary_Markers(adjancy_matrinx_B);
+            int[] next_markers_A;
+            int[] current_markers_A = Get_Primary_Markers(adjancy_matrix_A);
+            int[] next_markers_B;
+            int[] current_markers_B = Get_Primary_Markers(adjancy_matrinx_B);
             int[] p1;
             int[] p2;
             Mark_Int_List G2 = new Mark_Int_List();
@@ -593,7 +591,7 @@ namespace GraphFunctions
             return secondary_markers;
         }
 
-        public static bool[,]? Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(bool[,] adjancy_matrix)
+        public static bool[,] Transform_From_Any_Isomorphism_To_Single_Same_Isomorphism(bool[,] adjancy_matrix)
         {
             if (!Is_Square_Matrix(adjancy_matrix))
             {
